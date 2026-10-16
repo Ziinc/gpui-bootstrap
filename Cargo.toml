@@ -1,0 +1,24 @@
+[package]
+name = "gpui-bootstrap"
+version = "0.1.0"
+description = "Bootstrap 5 components for GPUI, built on gpui-kit, with a token theme you can re-skin."
+keywords = ["bootstrap", "gpui", "ui", "components", "theme"]
+categories = ["gui"]
+license = "MIT"
+repository = "https://github.com/Ziinc/gpui-bootstrap"
+readme = "README.md"
+edition = "2024"
+
+[dependencies]
+# gpui-kit pins its own gpui-pre snapshot and re-exports GPUI at its root, so
+# this crate never lists GPUI itself. Bump in lockstep with gpui-kit.
+gpui-kit = "=0.7.3"
+
+[dev-dependencies]
+gpui-kit = { version = "=0.7.3", features = ["test-support"] }
+anyhow = "1"
+# The gallery's `--screenshot` mode writes PNGs.
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[[example]]
+name = "gallery"
