@@ -22,6 +22,8 @@ use gpui_kit::{
     App, BoxShadow, FontWeight, Global, Hsla, Pixels, Rgba, SharedString, point, px, rgb, rgba,
 };
 
+use crate::platform::{Platform, apply_surfaces, palette};
+
 /// Bootstrap's two color modes (`data-bs-theme`).
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum ColorMode {
@@ -198,13 +200,50 @@ impl Typography {
     }
 }
 
+/// The box of one control size.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ControlSize {
+    /// `$btn-padding-x` / `$input-padding-x`.
+    pub padding_x: Pixels,
+    /// `$btn-padding-y` / `$input-padding-y`.
+    pub padding_y: Pixels,
+    /// The smallest height a control may have, for touch targets. `0` lets
+    /// padding and line height decide, as Bootstrap does.
+    pub min_height: Pixels,
+}
+
+/// Control boxes for each [`Size`].
+#[derive(Clone, Debug, PartialEq)]
+pub struct ControlSizes {
+    pub small: ControlSize,
+    pub medium: ControlSize,
+    pub large: ControlSize,
+    /// A button corner radius that differs from the size-based radius, such
+    /// as Material's fully rounded buttons. `None` uses [`Radii::for_size`].
+    pub button_radius: Option<Pixels>,
+}
+
+impl ControlSizes {
+    pub fn get(&self, size: Size) -> &ControlSize {
+        match size {
+            Size::Small => &self.small,
+            Size::Medium => &self.medium,
+            Size::Large => &self.large,
+        }
+    }
+}
+
 /// Bootstrap's full token set, installed as a GPUI global by [`crate::init`].
 #[derive(Clone, Debug, PartialEq)]
 pub struct Theme {
+    /// The platform look this theme started from; mode switches follow its palette.
+    pub platform: Platform,
     pub mode: ColorMode,
     pub colors: ThemeColors,
     pub radius: Radii,
     pub typography: Typography,
+    /// Padding and minimum height of buttons, inputs and other controls.
+    pub controls: ControlSizes,
     /// `$spacer`; the spacing scale `0..=5` is `0, .25, .5, 1, 1.5, 3` times it.
     pub spacer: Pixels,
     /// `$border-width`.
@@ -250,102 +289,40 @@ fn hexa(value: u32) -> Hsla {
 impl Theme {
     /// Bootstrap 5.3's default light theme.
     pub fn light() -> Self {
-        let primary = hex(0x0d6efd);
-        Self {
-            mode: ColorMode::Light,
-            colors: ThemeColors {
-                primary,
-                secondary: hex(0x6c757d),
-                success: hex(0x198754),
-                info: hex(0x0dcaf0),
-                warning: hex(0xffc107),
-                danger: hex(0xdc3545),
-                light: hex(0xf8f9fa),
-                dark: hex(0x212529),
-                white: hex(0xffffff),
-                black: hex(0x000000),
-                body_bg: hex(0xffffff),
-                body_color: hex(0x212529),
-                emphasis_color: hex(0x000000),
-                secondary_color: hexa(0x212529bf),
-                secondary_bg: hex(0xe9ecef),
-                tertiary_color: hexa(0x21252980),
-                tertiary_bg: hex(0xf8f9fa),
-                border_color: hex(0xdee2e6),
-                border_color_translucent: hexa(0x0000002d),
-                link_color: primary,
-                link_hover_color: shade(primary, 0.2),
-                backdrop: hexa(0x00000080),
-            },
-            radius: Radii {
-                sm: px(4.),
-                base: px(6.),
-                lg: px(8.),
-                xl: px(16.),
-                xxl: px(32.),
-                pill: px(800.),
-            },
-            typography: Typography {
-                font_family: ".SystemUIFont".into(),
-                font_family_mono: "monospace".into(),
-                font_size_base: px(16.),
-                font_size_sm: px(14.),
-                font_size_lg: px(20.),
-                line_height: 1.5,
-                font_weight_normal: FontWeight::NORMAL,
-                font_weight_medium: FontWeight::MEDIUM,
-                font_weight_semibold: FontWeight::SEMIBOLD,
-                font_weight_bold: FontWeight::BOLD,
-                headings: [px(40.), px(32.), px(28.), px(24.), px(20.), px(16.)],
-                headings_font_weight: FontWeight::MEDIUM,
-            },
-            spacer: px(16.),
-            border_width: px(1.),
-            focus_ring_width: px(4.),
-            focus_ring_opacity: 0.25,
-            disabled_opacity: 0.65,
-            min_contrast_ratio: 4.5,
-        }
+        Self::platform(Platform::Web, ColorMode::Light)
     }
 
     /// Bootstrap 5.3's dark color mode.
     pub fn dark() -> Self {
-        Self::light().with_mode(ColorMode::Dark)
+        Self::platform(Platform::Web, ColorMode::Dark)
     }
 
-    /// Keeps the theme colors, radii and type scale, and replaces the surface
-    /// colors (body, borders, links, backdrop) with the defaults of `mode`.
+    /// Switches to `mode` using this theme's platform palette: surfaces
+    /// (body, borders, links, backdrop) are replaced, and each theme color
+    /// moves to the platform's color for `mode` unless you changed it, in
+    /// which case your value is kept. Radii, type and sizing are untouched.
     pub fn with_mode(mut self, mode: ColorMode) -> Self {
-        let primary = self.colors.primary;
+        let from = palette(self.platform, self.mode);
+        let to = palette(self.platform, mode);
         let colors = &mut self.colors;
-        match mode {
-            ColorMode::Light => {
-                colors.body_bg = hex(0xffffff);
-                colors.body_color = hex(0x212529);
-                colors.emphasis_color = hex(0x000000);
-                colors.secondary_color = hexa(0x212529bf);
-                colors.secondary_bg = hex(0xe9ecef);
-                colors.tertiary_color = hexa(0x21252980);
-                colors.tertiary_bg = hex(0xf8f9fa);
-                colors.border_color = hex(0xdee2e6);
-                colors.border_color_translucent = hexa(0x0000002d);
-                colors.link_color = primary;
-                colors.link_hover_color = shade(primary, 0.2);
-            }
-            ColorMode::Dark => {
-                colors.body_bg = hex(0x212529);
-                colors.body_color = hex(0xdee2e6);
-                colors.emphasis_color = hex(0xffffff);
-                colors.secondary_color = hexa(0xdee2e6bf);
-                colors.secondary_bg = hex(0x343a40);
-                colors.tertiary_color = hexa(0xdee2e680);
-                colors.tertiary_bg = hex(0x2b3035);
-                colors.border_color = hex(0x495057);
-                colors.border_color_translucent = hexa(0xffffff26);
-                colors.link_color = tint(primary, 0.4);
-                colors.link_hover_color = tint(primary, 0.6);
+        for (field, (old, new)) in [
+            &mut colors.primary,
+            &mut colors.secondary,
+            &mut colors.success,
+            &mut colors.info,
+            &mut colors.warning,
+            &mut colors.danger,
+            &mut colors.light,
+            &mut colors.dark,
+        ]
+        .into_iter()
+        .zip(from.theme_colors().into_iter().zip(to.theme_colors()))
+        {
+            if *field == old {
+                *field = new;
             }
         }
+        apply_surfaces(colors, &to, self.platform, mode);
         self.mode = mode;
         self
     }

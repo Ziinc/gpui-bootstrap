@@ -197,6 +197,7 @@ impl RenderOnce for ListGroupItem {
             .w_full()
             .px(theme.spacer)
             .py(theme.spacing(2))
+            .min_h(theme.controls.medium.min_height)
             .bg(bg)
             .text_color(color)
             .border_color(border)

@@ -30,14 +30,16 @@ pub mod list_group;
 pub mod modal;
 pub mod nav;
 pub mod pagination;
+pub mod platform;
 pub mod progress;
 pub mod spinner;
 pub mod text;
 pub mod theme;
 
+pub use platform::Platform;
 pub use theme::{
-    ActiveTheme, ButtonColors, ColorMode, Radii, Size, Theme, ThemeColors, Typography, Variant,
-    VariantColors,
+    ActiveTheme, ButtonColors, ColorMode, ControlSize, ControlSizes, Radii, Size, Theme,
+    ThemeColors, Typography, Variant, VariantColors,
 };
 
 use gpui_kit::App;
@@ -64,6 +66,7 @@ pub mod prelude {
     pub use crate::modal::{Modal, ModalSize};
     pub use crate::nav::{Nav, NavItem, NavStyle};
     pub use crate::pagination::Pagination;
+    pub use crate::platform::Platform;
     pub use crate::progress::{Progress, ProgressBar};
     pub use crate::spinner::{Spinner, SpinnerStyle};
     pub use crate::text::{Heading, Lead, Muted, body};

@@ -13,7 +13,7 @@ use gpui_kit::{
     },
     div,
     prelude::FluentBuilder as _,
-    px, relative,
+    relative,
 };
 
 use crate::{ActiveTheme as _, Size, Theme};
@@ -130,11 +130,7 @@ impl RenderOnce for FormControl {
         let focused = self.state.read(cx).focus_handle(cx).is_focused(window);
         let theme = cx.theme();
         let colors = &theme.colors;
-        let (padding_y, padding_x) = match self.size {
-            Size::Small => (4., 8.),
-            Size::Medium => (6., 12.),
-            Size::Large => (8., 16.),
-        };
+        let control = theme.controls.get(self.size);
         let font_size = theme.typography.for_size(self.size);
         let validity_color = self
             .validity
@@ -151,8 +147,9 @@ impl RenderOnce for FormControl {
             .w_full()
             .flex()
             .items_center()
-            .px(px(padding_x))
-            .py(px(padding_y))
+            .px(control.padding_x)
+            .py(control.padding_y)
+            .min_h(control.min_height)
             .bg(if self.disabled {
                 colors.secondary_bg
             } else {

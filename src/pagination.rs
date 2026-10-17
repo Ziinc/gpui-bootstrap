@@ -8,10 +8,10 @@ use gpui_kit::{
     base::{self, PaginationItem, PaginationState, StyledExt as _},
     div,
     prelude::FluentBuilder as _,
-    px, relative,
+    relative,
 };
 
-use crate::{ActiveTheme as _, Size, button::button_padding};
+use crate::{ActiveTheme as _, Size};
 
 type ChangeHandler = Rc<dyn Fn(usize, &mut Window, &mut App)>;
 
@@ -101,7 +101,7 @@ impl RenderOnce for Pagination {
         links.push(Link::Next(state.next_page()));
 
         let count = links.len();
-        let (padding_y, padding_x) = button_padding(self.size);
+        let control = theme.controls.get(self.size);
         let radius = theme.radius.for_size(self.size);
         let font_size = theme.typography.for_size(self.size);
         let on_change = self.on_change;
@@ -141,8 +141,10 @@ impl RenderOnce for Pagination {
                         this.accessibility_label("Previous")
                     })
                     .when(index + 1 == count, |this| this.accessibility_label("Next"))
-                    .px(px(padding_x))
-                    .py(px(padding_y))
+                    .px(control.padding_x)
+                    .py(control.padding_y)
+                    .min_h(control.min_height)
+                    .min_w(control.min_height)
                     .text_size(font_size)
                     .line_height(relative(theme.typography.line_height))
                     .bg(bg)

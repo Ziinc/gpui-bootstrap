@@ -1,10 +1,12 @@
 //! Every gpui-bootstrap component, with live theme switching.
 //!
 //! - `cargo run --example gallery` opens the gallery.
-//! - `cargo run --example gallery -- --screenshot out.png [--dark] [--theme brand|flat]`
-//!   renders it headlessly to a PNG.
+//! - `cargo run --example gallery -- --screenshot out.png [--dark] [--theme <name>]`
+//!   renders it headlessly to a PNG. `<name>` is a platform (`web`, `macos`,
+//!   `windows`, `linux`, `ios`, `android`) or a custom theme (`brand`, `flat`).
 
 use gpui_bootstrap::{
+    Platform,
     prelude::*,
     theme::{ColorMode, Theme},
 };
@@ -12,25 +14,48 @@ use gpui_kit::{base::h_flex, base::v_flex, prelude::FluentBuilder as _, *};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Preset {
-    Bootstrap,
+    /// A built-in platform theme.
+    Platform(Platform),
     Brand,
     Flat,
 }
 
 impl Preset {
+    const ALL: [Preset; 8] = [
+        Preset::Platform(Platform::Web),
+        Preset::Platform(Platform::MacOS),
+        Preset::Platform(Platform::Windows),
+        Preset::Platform(Platform::Linux),
+        Preset::Platform(Platform::IOS),
+        Preset::Platform(Platform::Android),
+        Preset::Brand,
+        Preset::Flat,
+    ];
+
     fn name(self) -> &'static str {
         match self {
-            Preset::Bootstrap => "Bootstrap",
+            Preset::Platform(Platform::Web) => "Bootstrap",
+            Preset::Platform(platform) => platform.name(),
             Preset::Brand => "Brand",
             Preset::Flat => "Flat",
         }
     }
 
-    /// How an application re-themes: start from a mode and override tokens.
+    fn parse(name: &str) -> Option<Self> {
+        if name.eq_ignore_ascii_case("web") {
+            return Some(Preset::Platform(Platform::Web));
+        }
+        Self::ALL
+            .into_iter()
+            .find(|preset| preset.name().eq_ignore_ascii_case(name))
+    }
+
+    /// How an application re-themes: start from a built-in theme and
+    /// override tokens.
     fn theme(self, mode: ColorMode) -> Theme {
         let mut theme = Theme::light().with_mode(mode);
         match self {
-            Preset::Bootstrap => {}
+            Preset::Platform(platform) => theme = Theme::platform(platform, mode),
             Preset::Brand => {
                 theme.colors.primary = rgb(0x6f42c1).into();
                 theme.colors.success = rgb(0x20c997).into();
@@ -71,7 +96,7 @@ struct Gallery {
 impl Gallery {
     fn new(window: &mut Window, cx: &mut Context<Self>) -> Self {
         Self {
-            preset: Preset::Bootstrap,
+            preset: Preset::Platform(Platform::Web),
             mode: ColorMode::Light,
             tab: 0,
             page: 3,
@@ -126,15 +151,13 @@ impl Render for Gallery {
             .child(
                 h_flex()
                     .gap_4()
-                    .child(Nav::new("presets").pills().items(
-                        [Preset::Bootstrap, Preset::Brand, Preset::Flat].map(|preset| {
-                            NavItem::new(preset.name(), preset.name())
-                                .active(self.preset == preset)
-                                .on_click(cx.listener(move |this, _, _, cx| {
-                                    this.set_theme(preset, this.mode, cx)
-                                }))
-                        }),
-                    ))
+                    .child(Nav::new("presets").pills().items(Preset::ALL.map(|preset| {
+                        NavItem::new(preset.name(), preset.name())
+                            .active(self.preset == preset)
+                            .on_click(cx.listener(move |this, _, _, cx| {
+                                this.set_theme(preset, this.mode, cx)
+                            }))
+                    })))
                     .child(
                         Switch::new("dark")
                             .label("Dark mode")
@@ -471,16 +494,12 @@ fn main() {
     } else {
         ColorMode::Light
     };
-    let preset = match args
+    let preset = args
         .iter()
         .position(|arg| arg == "--theme")
         .and_then(|index| args.get(index + 1))
-        .map(String::as_str)
-    {
-        Some("brand") => Preset::Brand,
-        Some("flat") => Preset::Flat,
-        _ => Preset::Bootstrap,
-    };
+        .and_then(|name| Preset::parse(name))
+        .unwrap_or(Preset::Platform(Platform::Web));
     if let Some(path) = args
         .iter()
         .position(|arg| arg == "--screenshot")
@@ -534,7 +553,12 @@ fn screenshot(path: &str, preset: Preset, mode: ColorMode) -> anyhow::Result<()>
             WindowOptions {
                 window_bounds: Some(WindowBounds::Windowed(Bounds {
                     origin: Default::default(),
-                    size: size(px(1200.), px(2150.)),
+                    // Phone-sized for the mobile platforms.
+                    size: if matches!(preset, Preset::Platform(platform) if platform.is_mobile()) {
+                        size(px(430.), px(4200.))
+                    } else {
+                        size(px(1200.), px(2300.))
+                    },
                 })),
                 focus: false,
                 show: false,
