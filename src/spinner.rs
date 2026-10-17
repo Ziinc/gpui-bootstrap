@@ -27,6 +27,10 @@ pub enum SpinnerStyle {
 
 /// An indeterminate loading indicator. Without a variant it takes the
 /// surrounding text color, like Bootstrap's `currentcolor`.
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("spinner/playground")
+)]
 #[derive(IntoElement)]
 pub struct Spinner {
     spinner_style: SpinnerStyle,

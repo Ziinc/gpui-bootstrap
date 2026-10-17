@@ -21,6 +21,7 @@ pub fn body(cx: &App) -> Div {
 }
 
 /// `<h1>` through `<h6>`, or the `.h1`–`.h6` classes.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("typography/scale"))]
 #[derive(IntoElement)]
 pub struct Heading {
     level: u8,

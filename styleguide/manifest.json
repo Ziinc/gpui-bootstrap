@@ -1,0 +1,4436 @@
+{
+  "version": 1,
+  "playground_url": "https://ziinc.github.io/gpui-bootstrap/",
+  "examples": [
+    {
+      "id": "button/playground",
+      "title": "Playground",
+      "component": "Button",
+      "description": "Every builder as a knob.",
+      "code": [
+        {
+          "text": "Button::new(\"button\")\n    .label("
+        },
+        {
+          "knob": "label"
+        },
+        {
+          "text": ")\n    .variant("
+        },
+        {
+          "knob": "variant",
+          "code": {
+            "danger": "Variant::Danger",
+            "dark": "Variant::Dark",
+            "info": "Variant::Info",
+            "light": "Variant::Light",
+            "primary": "Variant::Primary",
+            "secondary": "Variant::Secondary",
+            "success": "Variant::Success",
+            "warning": "Variant::Warning"
+          }
+        },
+        {
+          "text": ")\n    .button_style("
+        },
+        {
+          "knob": "style",
+          "code": {
+            "link": "ButtonStyle::Link",
+            "outline": "ButtonStyle::Outline",
+            "solid": "ButtonStyle::Solid"
+          }
+        },
+        {
+          "text": ")\n    .with_size("
+        },
+        {
+          "knob": "size",
+          "code": {
+            "large": "Size::Large",
+            "medium": "Size::Medium",
+            "small": "Size::Small"
+          }
+        },
+        {
+          "text": ")\n    .active("
+        },
+        {
+          "knob": "active"
+        },
+        {
+          "text": ")\n    .disabled("
+        },
+        {
+          "knob": "disabled"
+        },
+        {
+          "text": ")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "label",
+          "type": "text",
+          "samples": [
+            "Save changes",
+            "Delete"
+          ],
+          "default": "Save changes"
+        },
+        {
+          "name": "variant",
+          "type": "select",
+          "options": [
+            "primary",
+            "secondary",
+            "success",
+            "info",
+            "warning",
+            "danger",
+            "light",
+            "dark"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "style",
+          "type": "select",
+          "options": [
+            "solid",
+            "outline",
+            "link"
+          ],
+          "default": "solid"
+        },
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium"
+        },
+        {
+          "name": "active",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "disabled",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/button/playground/bootstrap-light/default.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "b24f593be4db87c9"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Delete,variant=primary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Delete",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/label=Delete.png",
+          "width": 111,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "00d343de0149e140"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=secondary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "secondary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=secondary.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "3a91e5c0099ab0fc"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=success,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "success"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=success.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "30d6272073ea98ae"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=info,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "info"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=info.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "c10262714a5cd8e6"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=warning,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "warning"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=warning.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "f322ce694a7ff3a3"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=danger,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "danger"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=danger.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "44953a3a1ac0b3c8"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=light,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "light"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=light.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "df35ec59fdd1ec25"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=dark,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "dark"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/variant=dark.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "4dc4ae710e704133"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=outline,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "outline",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/style=outline.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "b676598e7ea3cc4d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=link,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "link",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/style=link.png",
+          "width": 144,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "9c1d1b9c5b5718b3"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=solid,size=small,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "small",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/size=small.png",
+          "width": 148,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "f153a48a7cb1612b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=solid,size=large,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "large",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/size=large.png",
+          "width": 206,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "8aed8bbed0d3d75c"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=true,disabled=false",
+          "values": {
+            "active": true,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/active=true.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "77c20b74297da9ed"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=false,disabled=true",
+          "values": {
+            "active": false,
+            "disabled": true,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-light/disabled=true.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "fd891c16b84dc5bc"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/button/playground/bootstrap-dark/default.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "95feb16cce4b8269"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Delete,variant=primary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Delete",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/label=Delete.png",
+          "width": 111,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "df7db7d8c7c5a5a8"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=secondary,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "secondary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=secondary.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "d57d7219175ae60c"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=success,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "success"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=success.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "6458e6aa973cc83e"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=info,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "info"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=info.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "74bf837447c38176"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=warning,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "warning"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=warning.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "b3bb5ba6213d76cb"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=danger,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "danger"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=danger.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "4bcfa79642b13288"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=light,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "light"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=light.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "0bc3098174a27f95"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=dark,style=solid,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "dark"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/variant=dark.png",
+          "width": 142,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "a2ab68da9aaa8e93"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=outline,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "outline",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/style=outline.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "82b13e8b6b44d930"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=link,size=medium,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "link",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/style=link.png",
+          "width": 144,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "4462e63571e1c4a4"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=solid,size=small,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "small",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/size=small.png",
+          "width": 148,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "9b754b0a429f8cc3"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=solid,size=large,active=false,disabled=false",
+          "values": {
+            "active": false,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "large",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/size=large.png",
+          "width": 206,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "16aa2833f15c9194"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=true,disabled=false",
+          "values": {
+            "active": true,
+            "disabled": false,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/active=true.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "28562b39718a958d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=Save changes,variant=primary,style=solid,size=medium,active=false,disabled=true",
+          "values": {
+            "active": false,
+            "disabled": true,
+            "label": "Save changes",
+            "size": "medium",
+            "style": "solid",
+            "variant": "primary"
+          },
+          "file": "snapshots/button/playground/bootstrap-dark/disabled=true.png",
+          "width": 170,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "ce9a70cd909f5e22"
+        }
+      ]
+    },
+    {
+      "id": "button/variants",
+      "title": "Theme colors",
+      "component": "Button",
+      "code": [
+        {
+          "text": "let style = "
+        },
+        {
+          "knob": "style",
+          "code": {
+            "outline": "ButtonStyle::Outline",
+            "solid": "ButtonStyle::Solid"
+          }
+        },
+        {
+          "text": ";\nh_flex()\n    .flex_wrap()\n    .gap_2()\n    .children(Variant::ALL.map(|variant| {\n        Button::new(variant as usize)\n            .label(variant.name())\n            .variant(variant)\n            .button_style(style)\n    }))"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "style",
+          "type": "select",
+          "options": [
+            "solid",
+            "outline"
+          ],
+          "default": "solid"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "style=solid",
+          "values": {
+            "style": "solid"
+          },
+          "is_default": true,
+          "file": "snapshots/button/variants/bootstrap-light/default.png",
+          "width": 730,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "99b60f258217715f"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=outline",
+          "values": {
+            "style": "outline"
+          },
+          "file": "snapshots/button/variants/bootstrap-light/style=outline.png",
+          "width": 730,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "ae5f5869c2012dac"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=solid",
+          "values": {
+            "style": "solid"
+          },
+          "is_default": true,
+          "file": "snapshots/button/variants/bootstrap-dark/default.png",
+          "width": 717,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "ac7a79ff1c9e4d2f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=outline",
+          "values": {
+            "style": "outline"
+          },
+          "file": "snapshots/button/variants/bootstrap-dark/style=outline.png",
+          "width": 660,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "ccf484b2f64bb14f"
+        }
+      ]
+    },
+    {
+      "id": "button-group/basic",
+      "title": "Outline group",
+      "component": "ButtonGroup",
+      "code": [
+        {
+          "text": "ButtonGroup::new(\"group\")\n    .with_size("
+        },
+        {
+          "knob": "size",
+          "code": {
+            "large": "Size::Large",
+            "medium": "Size::Medium",
+            "small": "Size::Small"
+          }
+        },
+        {
+          "text": ")\n    .button(Button::new(\"left\").label(\"Left\").outline())\n    .button(Button::new(\"middle\").label(\"Middle\").outline().active(true))\n    .button(Button::new(\"right\").label(\"Right\").outline())"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "size=medium",
+          "values": {
+            "size": "medium"
+          },
+          "is_default": true,
+          "file": "snapshots/button-group/basic/bootstrap-light/default.png",
+          "width": 235,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "945f7800dffe42c2"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "size=small",
+          "values": {
+            "size": "small"
+          },
+          "file": "snapshots/button-group/basic/bootstrap-light/size=small.png",
+          "width": 195,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "bbab50a424c4618d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "size=large",
+          "values": {
+            "size": "large"
+          },
+          "file": "snapshots/button-group/basic/bootstrap-light/size=large.png",
+          "width": 290,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "6ee2bac07e3dce5f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "size=medium",
+          "values": {
+            "size": "medium"
+          },
+          "is_default": true,
+          "file": "snapshots/button-group/basic/bootstrap-dark/default.png",
+          "width": 235,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "5926ec3d649a37b3"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "size=small",
+          "values": {
+            "size": "small"
+          },
+          "file": "snapshots/button-group/basic/bootstrap-dark/size=small.png",
+          "width": 195,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "1d2ee17f6923569d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "size=large",
+          "values": {
+            "size": "large"
+          },
+          "file": "snapshots/button-group/basic/bootstrap-dark/size=large.png",
+          "width": 290,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "f09aadbd3306167f"
+        }
+      ]
+    },
+    {
+      "id": "close-button/basic",
+      "title": "Close button",
+      "component": "CloseButton",
+      "code": [
+        {
+          "text": "let white = "
+        },
+        {
+          "knob": "white"
+        },
+        {
+          "text": ";\ndiv()\n    .p_3()\n    .rounded_md()\n    .when(white, |this| this.bg(cx.theme().colors.dark))\n    .child(\n        CloseButton::new(\"close\")\n            .white(white)\n            .disabled("
+        },
+        {
+          "knob": "disabled"
+        },
+        {
+          "text": "),\n    )"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "white",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "disabled",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "white=false,disabled=false",
+          "values": {
+            "disabled": false,
+            "white": false
+          },
+          "is_default": true,
+          "file": "snapshots/close-button/basic/bootstrap-light/default.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "168a1ed1caee4985"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "white=false,disabled=true",
+          "values": {
+            "disabled": true,
+            "white": false
+          },
+          "file": "snapshots/close-button/basic/bootstrap-light/disabled=true.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "7c1d97a239ac5c25"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "white=true,disabled=false",
+          "values": {
+            "disabled": false,
+            "white": true
+          },
+          "file": "snapshots/close-button/basic/bootstrap-light/white=true.png",
+          "width": 80,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "941f76a1c0ef3365"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "white=true,disabled=true",
+          "values": {
+            "disabled": true,
+            "white": true
+          },
+          "file": "snapshots/close-button/basic/bootstrap-light/white=true,disabled=true.png",
+          "width": 80,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "caf5c3e38dc1964d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "white=false,disabled=false",
+          "values": {
+            "disabled": false,
+            "white": false
+          },
+          "is_default": true,
+          "file": "snapshots/close-button/basic/bootstrap-dark/default.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "5e0ef507617e58e5"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "white=false,disabled=true",
+          "values": {
+            "disabled": true,
+            "white": false
+          },
+          "file": "snapshots/close-button/basic/bootstrap-dark/disabled=true.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "693b4475d09cafed"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "white=true,disabled=false",
+          "values": {
+            "disabled": false,
+            "white": true
+          },
+          "file": "snapshots/close-button/basic/bootstrap-dark/white=true.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "5e0ef507617e58e5"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "white=true,disabled=true",
+          "values": {
+            "disabled": true,
+            "white": true
+          },
+          "file": "snapshots/close-button/basic/bootstrap-dark/white=true,disabled=true.png",
+          "width": 42,
+          "height": 42,
+          "scale": 2.0,
+          "hash": "693b4475d09cafed"
+        }
+      ]
+    },
+    {
+      "id": "badge/playground",
+      "title": "Playground",
+      "component": "Badge",
+      "code": [
+        {
+          "text": "Badge::new("
+        },
+        {
+          "knob": "label"
+        },
+        {
+          "text": ")\n    .variant("
+        },
+        {
+          "knob": "variant",
+          "code": {
+            "danger": "Variant::Danger",
+            "dark": "Variant::Dark",
+            "info": "Variant::Info",
+            "light": "Variant::Light",
+            "primary": "Variant::Primary",
+            "secondary": "Variant::Secondary",
+            "success": "Variant::Success",
+            "warning": "Variant::Warning"
+          }
+        },
+        {
+          "text": ")\n    .pill("
+        },
+        {
+          "knob": "pill"
+        },
+        {
+          "text": ")\n    .subtle("
+        },
+        {
+          "knob": "subtle"
+        },
+        {
+          "text": ")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "label",
+          "type": "text",
+          "samples": [
+            "New",
+            "99+"
+          ],
+          "default": "New"
+        },
+        {
+          "name": "variant",
+          "type": "select",
+          "options": [
+            "primary",
+            "secondary",
+            "success",
+            "info",
+            "warning",
+            "danger",
+            "light",
+            "dark"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "pill",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "subtle",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=primary,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/badge/playground/bootstrap-light/default.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "aa4fafb2f31d9c8c"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=99+,variant=primary,pill=false,subtle=false",
+          "values": {
+            "label": "99+",
+            "pill": false,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/label=99_-2fe6ae77.png",
+          "width": 75,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "33e164be6a864d7a"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=secondary,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "secondary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=secondary.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "530f9afc5b5f7d13"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=success,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "success"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=success.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "24e4d0a1d42bb203"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=info,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "info"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=info.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "d69d669285be645e"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=warning,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "warning"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=warning.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "2731197aa8d11ab2"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=danger,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "danger"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=danger.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "a79da0fa7ecba9ea"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=light,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "light"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=light.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "5dbc57b23b3f0ef1"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=dark,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "dark"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/variant=dark.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "2050bb4699a8a692"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=primary,pill=true,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": true,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/pill=true.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "82b3fa09eece110c"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "label=New,variant=primary,pill=false,subtle=true",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": true,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-light/subtle=true.png",
+          "width": 80,
+          "height": 54,
+          "scale": 2.0,
+          "hash": "d89046050c77e21f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=primary,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/badge/playground/bootstrap-dark/default.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "2a3bd045ceb9df00"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=99+,variant=primary,pill=false,subtle=false",
+          "values": {
+            "label": "99+",
+            "pill": false,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/label=99_-2fe6ae77.png",
+          "width": 75,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "332951f608fd2ea2"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=secondary,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "secondary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=secondary.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "80560907ff636397"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=success,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "success"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=success.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "bc17d127a233fc4f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=info,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "info"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=info.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "f11105c52a210b2a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=warning,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "warning"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=warning.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "c5365efade626fc6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=danger,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "danger"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=danger.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "0e28d26e3cab5cee"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=light,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "light"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=light.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "62cdf67e71336edd"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=dark,pill=false,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": false,
+            "variant": "dark"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/variant=dark.png",
+          "width": 60,
+          "height": 41,
+          "scale": 2.0,
+          "hash": "5d6726310780e27e"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=primary,pill=true,subtle=false",
+          "values": {
+            "label": "New",
+            "pill": true,
+            "subtle": false,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/pill=true.png",
+          "width": 78,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "237dfc2120fa59c4"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "label=New,variant=primary,pill=false,subtle=true",
+          "values": {
+            "label": "New",
+            "pill": false,
+            "subtle": true,
+            "variant": "primary"
+          },
+          "file": "snapshots/badge/playground/bootstrap-dark/subtle=true.png",
+          "width": 80,
+          "height": 54,
+          "scale": 2.0,
+          "hash": "9ca241d73ea2d7d3"
+        }
+      ]
+    },
+    {
+      "id": "badge/variants",
+      "title": "Theme colors",
+      "component": "Badge",
+      "code": [
+        {
+          "text": "let subtle = "
+        },
+        {
+          "knob": "subtle"
+        },
+        {
+          "text": ";\nh_flex().gap_2().children(\n    Variant::ALL\n        .map(|variant| Badge::new(variant.name()).variant(variant).subtle(subtle)),\n)"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "subtle",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "subtle=false",
+          "values": {
+            "subtle": false
+          },
+          "is_default": true,
+          "file": "snapshots/badge/variants/bootstrap-light/default.png",
+          "width": 585,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "db76ff6c6a91390e"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "subtle=true",
+          "values": {
+            "subtle": true
+          },
+          "file": "snapshots/badge/variants/bootstrap-light/subtle=true.png",
+          "width": 601,
+          "height": 54,
+          "scale": 2.0,
+          "hash": "042f4c5b4336913b"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "subtle=false",
+          "values": {
+            "subtle": false
+          },
+          "is_default": true,
+          "file": "snapshots/badge/variants/bootstrap-dark/default.png",
+          "width": 577,
+          "height": 52,
+          "scale": 2.0,
+          "hash": "1064e70affb38db6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "subtle=true",
+          "values": {
+            "subtle": true
+          },
+          "file": "snapshots/badge/variants/bootstrap-dark/subtle=true.png",
+          "width": 601,
+          "height": 54,
+          "scale": 2.0,
+          "hash": "bd39f391c90a8959"
+        }
+      ]
+    },
+    {
+      "id": "alert/playground",
+      "title": "Playground",
+      "component": "Alert",
+      "code": [
+        {
+          "text": "Alert::new(\"alert\")\n    .w(px(480.))\n    .variant("
+        },
+        {
+          "knob": "variant",
+          "code": {
+            "danger": "Variant::Danger",
+            "dark": "Variant::Dark",
+            "info": "Variant::Info",
+            "light": "Variant::Light",
+            "primary": "Variant::Primary",
+            "secondary": "Variant::Secondary",
+            "success": "Variant::Success",
+            "warning": "Variant::Warning"
+          }
+        },
+        {
+          "text": ")\n    .heading("
+        },
+        {
+          "knob": "heading"
+        },
+        {
+          "text": ")\n    .when("
+        },
+        {
+          "knob": "dismissible"
+        },
+        {
+          "text": ", |this| {\n        this.on_dismiss(|_, _, _| {})\n    })\n    .child("
+        },
+        {
+          "knob": "message"
+        },
+        {
+          "text": ")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "variant",
+          "type": "select",
+          "options": [
+            "primary",
+            "secondary",
+            "success",
+            "info",
+            "warning",
+            "danger",
+            "light",
+            "dark"
+          ],
+          "default": "success"
+        },
+        {
+          "name": "heading",
+          "type": "text",
+          "samples": [
+            "Well done!"
+          ],
+          "default": "Well done!"
+        },
+        {
+          "name": "dismissible",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "samples": [
+            "You successfully read this important alert message.",
+            "Aww yeah, this longer message wraps onto a second line so you can see how the alert keeps its padding and close button."
+          ],
+          "default": "You successfully read this important alert message."
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=success,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "success"
+          },
+          "is_default": true,
+          "file": "snapshots/alert/playground/bootstrap-light/default.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "be6f7b7c7083d6fa"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=primary,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "primary"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=primary.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "8a02548601b73c39"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=secondary,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "secondary"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=secondary.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "ed203d635fd02c1a"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=info,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "info"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=info.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "df8390a513f969a7"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=warning,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "warning"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=warning.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "c038432a5925160d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=danger,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "danger"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=danger.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "f67a58c8ebe284fb"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=light,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "light"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=light.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "620c97bfe479ec7b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=dark,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "dark"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/variant=dark.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "daac8ff6358af68d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=success,heading=Well done!,dismissible=false,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": false,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "success"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/dismissible=false.png",
+          "width": 512,
+          "height": 129,
+          "scale": 2.0,
+          "hash": "bb4ee60a8e20dfc9"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "variant=success,heading=Well done!,dismissible=true,message=Aww yeah, this longer message wraps onto a second line so you can see how the alert keeps its padding and close button.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "Aww yeah, this longer message wraps onto a second line so you can see how the alert keeps its padding and close button.",
+            "variant": "success"
+          },
+          "file": "snapshots/alert/playground/bootstrap-light/message=Aww_yeah,_this_longer_message_wraps_onto_a_second_line_s-5e8bca7c.png",
+          "width": 512,
+          "height": 181,
+          "scale": 2.0,
+          "hash": "ff61d4b1f55dd8e0"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=success,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "success"
+          },
+          "is_default": true,
+          "file": "snapshots/alert/playground/bootstrap-dark/default.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "c9aa322625d73038"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=primary,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "primary"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=primary.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "7bb07dd304a3f53f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=secondary,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "secondary"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=secondary.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "8138ca9430935599"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=info,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "info"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=info.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "43c3ec206bd1c1c5"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=warning,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "warning"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=warning.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "1ea6074ef84b889f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=danger,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "danger"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=danger.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "ac6f1efa6af1ab26"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=light,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "light"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=light.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "e0528e4b43991ca7"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=dark,heading=Well done!,dismissible=true,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "dark"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/variant=dark.png",
+          "width": 512,
+          "height": 155,
+          "scale": 2.0,
+          "hash": "0f97be41d3c5655e"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=success,heading=Well done!,dismissible=false,message=You successfully read this important alert message.",
+          "values": {
+            "dismissible": false,
+            "heading": "Well done!",
+            "message": "You successfully read this important alert message.",
+            "variant": "success"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/dismissible=false.png",
+          "width": 512,
+          "height": 129,
+          "scale": 2.0,
+          "hash": "1645bf06ee9a7e9f"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "variant=success,heading=Well done!,dismissible=true,message=Aww yeah, this longer message wraps onto a second line so you can see how the alert keeps its padding and close button.",
+          "values": {
+            "dismissible": true,
+            "heading": "Well done!",
+            "message": "Aww yeah, this longer message wraps onto a second line so you can see how the alert keeps its padding and close button.",
+            "variant": "success"
+          },
+          "file": "snapshots/alert/playground/bootstrap-dark/message=Aww_yeah,_this_longer_message_wraps_onto_a_second_line_s-5e8bca7c.png",
+          "width": 512,
+          "height": 181,
+          "scale": 2.0,
+          "hash": "cc2a4d2176108a4e"
+        }
+      ]
+    },
+    {
+      "id": "alert/variants",
+      "title": "Theme colors",
+      "component": "Alert",
+      "code": [
+        {
+          "text": "v_flex()\n    .w(px(420.))\n    .gap_2()\n    .children(Variant::ALL.map(|variant| {\n        Alert::new(variant as usize)\n            .variant(variant)\n            .child(format!(\"A simple {} alert.\", variant.name()))\n    }))"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/alert/variants/bootstrap-light/default.png",
+          "width": 452,
+          "height": 568,
+          "scale": 2.0,
+          "hash": "a8bfa4fceb6679cb"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/alert/variants/bootstrap-dark/default.png",
+          "width": 452,
+          "height": 568,
+          "scale": 2.0,
+          "hash": "1abc4a15abd7ad95"
+        }
+      ]
+    },
+    {
+      "id": "progress/playground",
+      "title": "Playground",
+      "component": "Progress",
+      "code": [
+        {
+          "text": "let value = "
+        },
+        {
+          "knob": "value"
+        },
+        {
+          "text": ";\nlet bar = ProgressBar::new(value as f32).variant("
+        },
+        {
+          "knob": "variant",
+          "code": {
+            "danger": "Variant::Danger",
+            "info": "Variant::Info",
+            "primary": "Variant::Primary",
+            "success": "Variant::Success",
+            "warning": "Variant::Warning"
+          }
+        },
+        {
+          "text": ");\nlet bar = if "
+        },
+        {
+          "knob": "label"
+        },
+        {
+          "text": " {\n    bar.label(format!(\"{value}%\"))\n} else {\n    bar\n};\nProgress::new(\"progress\").w(px(360.)).bar(bar)"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "value",
+          "type": "number",
+          "min": 0.0,
+          "max": 100.0,
+          "step": 5.0,
+          "default": 60.0
+        },
+        {
+          "name": "variant",
+          "type": "select",
+          "options": [
+            "primary",
+            "success",
+            "info",
+            "warning",
+            "danger"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "label",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=primary,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/progress/playground/bootstrap-light/default.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "95559fc505877d7d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=success,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "success"
+          },
+          "file": "snapshots/progress/playground/bootstrap-light/variant=success.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "d550fe0765563ffd"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=info,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "info"
+          },
+          "file": "snapshots/progress/playground/bootstrap-light/variant=info.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "1f31ee9c0553c7fd"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=warning,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "warning"
+          },
+          "file": "snapshots/progress/playground/bootstrap-light/variant=warning.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "b31e4bb5380d707d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=danger,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "danger"
+          },
+          "file": "snapshots/progress/playground/bootstrap-light/variant=danger.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "668c35589d3c35fd"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=60,variant=primary,label=true",
+          "values": {
+            "label": true,
+            "value": 60.0,
+            "variant": "primary"
+          },
+          "file": "snapshots/progress/playground/bootstrap-light/label=true.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "9a9af21a34097b3b"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=primary,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/progress/playground/bootstrap-dark/default.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "d3cd36752c980c99"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=success,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "success"
+          },
+          "file": "snapshots/progress/playground/bootstrap-dark/variant=success.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "54481c4222334b99"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=info,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "info"
+          },
+          "file": "snapshots/progress/playground/bootstrap-dark/variant=info.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "f363f32e1d6a8899"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=warning,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "warning"
+          },
+          "file": "snapshots/progress/playground/bootstrap-dark/variant=warning.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "808b55afc4c87519"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=danger,label=false",
+          "values": {
+            "label": false,
+            "value": 60.0,
+            "variant": "danger"
+          },
+          "file": "snapshots/progress/playground/bootstrap-dark/variant=danger.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "5c5b770cbaa1cb99"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=60,variant=primary,label=true",
+          "values": {
+            "label": true,
+            "value": 60.0,
+            "variant": "primary"
+          },
+          "file": "snapshots/progress/playground/bootstrap-dark/label=true.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "b6e487eedfe72fab"
+        }
+      ]
+    },
+    {
+      "id": "progress/stacked",
+      "title": "Stacked bars",
+      "component": "Progress",
+      "code": [
+        {
+          "text": "Progress::new(\"stacked\")\n    .w(px(360.))\n    .bar(ProgressBar::new(15.))\n    .bar(ProgressBar::new(30.).variant(Variant::Success))\n    .bar(ProgressBar::new(20.).variant(Variant::Info))"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/progress/stacked/bootstrap-light/default.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "beeb0d5fc6d3f70d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/progress/stacked/bootstrap-dark/default.png",
+          "width": 392,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "93ce0c646396cd39"
+        }
+      ]
+    },
+    {
+      "id": "spinner/playground",
+      "title": "Playground",
+      "component": "Spinner",
+      "code": [
+        {
+          "text": "Spinner::new()\n    .spinner_style("
+        },
+        {
+          "knob": "style",
+          "code": {
+            "border": "SpinnerStyle::Border",
+            "grow": "SpinnerStyle::Grow"
+          }
+        },
+        {
+          "text": ")\n    .variant("
+        },
+        {
+          "knob": "variant",
+          "code": {
+            "danger": "Variant::Danger",
+            "primary": "Variant::Primary",
+            "secondary": "Variant::Secondary",
+            "success": "Variant::Success"
+          }
+        },
+        {
+          "text": ")\n    .with_size("
+        },
+        {
+          "knob": "size",
+          "code": {
+            "medium": "Size::Medium",
+            "small": "Size::Small"
+          }
+        },
+        {
+          "text": ")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "style",
+          "type": "select",
+          "options": [
+            "border",
+            "grow"
+          ],
+          "default": "border"
+        },
+        {
+          "name": "variant",
+          "type": "select",
+          "options": [
+            "primary",
+            "secondary",
+            "success",
+            "danger"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium"
+          ],
+          "default": "medium"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "style=border,variant=primary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/spinner/playground/bootstrap-light/default.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "c875f8eb16dad07f"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=grow,variant=primary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "grow",
+            "variant": "primary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-light/style=grow.png",
+          "width": 32,
+          "height": 32,
+          "scale": 2.0,
+          "hash": "0d65b7532d396325"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=border,variant=secondary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "secondary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-light/variant=secondary.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "b90620b88e9a8112"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=border,variant=success,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "success"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-light/variant=success.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "a3669f7859310c34"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=border,variant=danger,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "danger"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-light/variant=danger.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "3795922bc4dc96cc"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=border,variant=primary,size=small",
+          "values": {
+            "size": "small",
+            "style": "border",
+            "variant": "primary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-light/size=small.png",
+          "width": 46,
+          "height": 46,
+          "scale": 2.0,
+          "hash": "d3160c7f32d5cfb7"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=border,variant=primary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "primary"
+          },
+          "is_default": true,
+          "file": "snapshots/spinner/playground/bootstrap-dark/default.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "32c43a175f281011"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=grow,variant=primary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "grow",
+            "variant": "primary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-dark/style=grow.png",
+          "width": 32,
+          "height": 32,
+          "scale": 2.0,
+          "hash": "92912c16d851a325"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=border,variant=secondary,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "secondary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-dark/variant=secondary.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "bac92ee09fac2dec"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=border,variant=success,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "success"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-dark/variant=success.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "5343fb0716154f13"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=border,variant=danger,size=medium",
+          "values": {
+            "size": "medium",
+            "style": "border",
+            "variant": "danger"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-dark/variant=danger.png",
+          "width": 59,
+          "height": 59,
+          "scale": 2.0,
+          "hash": "a5f57ad706d1cf82"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=border,variant=primary,size=small",
+          "values": {
+            "size": "small",
+            "style": "border",
+            "variant": "primary"
+          },
+          "file": "snapshots/spinner/playground/bootstrap-dark/size=small.png",
+          "width": 46,
+          "height": 46,
+          "scale": 2.0,
+          "hash": "11c7c080f981f7c4"
+        }
+      ]
+    },
+    {
+      "id": "card/basic",
+      "title": "Card",
+      "component": "Card",
+      "code": [
+        {
+          "text": "Card::new()\n    .w(px(288.))\n    .when("
+        },
+        {
+          "knob": "header"
+        },
+        {
+          "text": ", |card| card.header(\"Featured\"))\n    .title("
+        },
+        {
+          "knob": "title"
+        },
+        {
+          "text": ")\n    .subtitle("
+        },
+        {
+          "knob": "subtitle"
+        },
+        {
+          "text": ")\n    .child(\n        \"Some quick example text to build on the card title and make up the bulk of \\\n         the card's content.\",\n    )\n    .when("
+        },
+        {
+          "knob": "footer"
+        },
+        {
+          "text": ", |card| {\n        card.footer(Muted::new(\"Last updated 3 mins ago\"))\n    })\n    .when_some(\n        "
+        },
+        {
+          "knob": "border",
+          "code": {
+            "danger": "Some(Variant::Danger)",
+            "none": "None",
+            "primary": "Some(Variant::Primary)",
+            "success": "Some(Variant::Success)"
+          }
+        },
+        {
+          "text": ",\n        Card::border_variant,\n    )"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "header",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "samples": [
+            "Card title"
+          ],
+          "default": "Card title"
+        },
+        {
+          "name": "subtitle",
+          "type": "text",
+          "samples": [
+            "Card subtitle"
+          ],
+          "default": "Card subtitle"
+        },
+        {
+          "name": "footer",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "border",
+          "type": "select",
+          "options": [
+            "none",
+            "primary",
+            "success",
+            "danger"
+          ],
+          "default": "none"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=none",
+          "values": {
+            "border": "none",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "is_default": true,
+          "file": "snapshots/card/basic/bootstrap-light/default.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "75f5d19d227b1906"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "header=false,title=Card title,subtitle=Card subtitle,footer=false,border=none",
+          "values": {
+            "border": "none",
+            "footer": false,
+            "header": false,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-light/header=false.png",
+          "width": 320,
+          "height": 236,
+          "scale": 2.0,
+          "hash": "69996cacd76d3789"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=true,border=none",
+          "values": {
+            "border": "none",
+            "footer": true,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-light/footer=true.png",
+          "width": 320,
+          "height": 322,
+          "scale": 2.0,
+          "hash": "8723b314e365547b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=primary",
+          "values": {
+            "border": "primary",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-light/border=primary.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "8cd681e152b4b79e"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=success",
+          "values": {
+            "border": "success",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-light/border=success.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "b83d771b7c0c840e"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=danger",
+          "values": {
+            "border": "danger",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-light/border=danger.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "467d9dae87f29df6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=none",
+          "values": {
+            "border": "none",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "is_default": true,
+          "file": "snapshots/card/basic/bootstrap-dark/default.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "f8796056ea948b16"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=false,title=Card title,subtitle=Card subtitle,footer=false,border=none",
+          "values": {
+            "border": "none",
+            "footer": false,
+            "header": false,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-dark/header=false.png",
+          "width": 320,
+          "height": 236,
+          "scale": 2.0,
+          "hash": "0815d3f7b25ac09b"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=true,border=none",
+          "values": {
+            "border": "none",
+            "footer": true,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-dark/footer=true.png",
+          "width": 320,
+          "height": 322,
+          "scale": 2.0,
+          "hash": "96d9874d156f5486"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=primary",
+          "values": {
+            "border": "primary",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-dark/border=primary.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "2b2ecbfcb140f1da"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=success",
+          "values": {
+            "border": "success",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-dark/border=success.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "e332a687daaf6baa"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "header=true,title=Card title,subtitle=Card subtitle,footer=false,border=danger",
+          "values": {
+            "border": "danger",
+            "footer": false,
+            "header": true,
+            "subtitle": "Card subtitle",
+            "title": "Card title"
+          },
+          "file": "snapshots/card/basic/bootstrap-dark/border=danger.png",
+          "width": 320,
+          "height": 279,
+          "scale": 2.0,
+          "hash": "2c451323fd077d0a"
+        }
+      ]
+    },
+    {
+      "id": "list-group/basic",
+      "title": "Interactive list",
+      "component": "ListGroup",
+      "code": [
+        {
+          "text": "let active = "
+        },
+        {
+          "knob": "active",
+          "code": {
+            "first": "Some(0)",
+            "none": "None",
+            "second": "Some(1)"
+          }
+        },
+        {
+          "text": ";\nListGroup::new(\"list\")\n    .w(px(288.))\n    .flush("
+        },
+        {
+          "knob": "flush"
+        },
+        {
+          "text": ")\n    .items(\n        [\"An item\", \"A second item\", \"A third item\"]\n            .into_iter()\n            .enumerate()\n            .map(|(index, label)| {\n                ListGroupItem::new(index)\n                    .label(label)\n                    .active(active == Some(index))\n                    .on_click(|_, _, _| {})\n            }),\n    )\n    .item(\n        ListGroupItem::new(\"disabled\")\n            .label(\"A disabled item\")\n            .disabled(true),\n    )\n    .item(\n        ListGroupItem::new(\"success\")\n            .label(\"A success item\")\n            .variant(Variant::Success),\n    )"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "active",
+          "type": "select",
+          "options": [
+            "none",
+            "first",
+            "second"
+          ],
+          "default": "second"
+        },
+        {
+          "name": "flush",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "active=second,flush=false",
+          "values": {
+            "active": "second",
+            "flush": false
+          },
+          "is_default": true,
+          "file": "snapshots/list-group/basic/bootstrap-light/default.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "56cf23ef3acd7405"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "active=second,flush=true",
+          "values": {
+            "active": "second",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-light/flush=true.png",
+          "width": 320,
+          "height": 188,
+          "scale": 2.0,
+          "hash": "c2e27d452782b451"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "active=none,flush=false",
+          "values": {
+            "active": "none",
+            "flush": false
+          },
+          "file": "snapshots/list-group/basic/bootstrap-light/active=none.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "e8dc3eadf55e2e56"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "active=none,flush=true",
+          "values": {
+            "active": "none",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-light/active=none,flush=true.png",
+          "width": 320,
+          "height": 188,
+          "scale": 2.0,
+          "hash": "25f3294d27a7f792"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "active=first,flush=false",
+          "values": {
+            "active": "first",
+            "flush": false
+          },
+          "file": "snapshots/list-group/basic/bootstrap-light/active=first.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "d6e5886ef03b054a"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "active=first,flush=true",
+          "values": {
+            "active": "first",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-light/active=first,flush=true.png",
+          "width": 320,
+          "height": 197,
+          "scale": 2.0,
+          "hash": "ba00e30d34f26bea"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=second,flush=false",
+          "values": {
+            "active": "second",
+            "flush": false
+          },
+          "is_default": true,
+          "file": "snapshots/list-group/basic/bootstrap-dark/default.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "2f242c33e867494a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=second,flush=true",
+          "values": {
+            "active": "second",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-dark/flush=true.png",
+          "width": 320,
+          "height": 188,
+          "scale": 2.0,
+          "hash": "63e5e65094b55df6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=none,flush=false",
+          "values": {
+            "active": "none",
+            "flush": false
+          },
+          "file": "snapshots/list-group/basic/bootstrap-dark/active=none.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "686244312fdc614c"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=none,flush=true",
+          "values": {
+            "active": "none",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-dark/active=none,flush=true.png",
+          "width": 320,
+          "height": 188,
+          "scale": 2.0,
+          "hash": "ca58c240972ce0d8"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=first,flush=false",
+          "values": {
+            "active": "first",
+            "flush": false
+          },
+          "file": "snapshots/list-group/basic/bootstrap-dark/active=first.png",
+          "width": 320,
+          "height": 198,
+          "scale": 2.0,
+          "hash": "6e94c8bf1d553eb6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "active=first,flush=true",
+          "values": {
+            "active": "first",
+            "flush": true
+          },
+          "file": "snapshots/list-group/basic/bootstrap-dark/active=first,flush=true.png",
+          "width": 320,
+          "height": 197,
+          "scale": 2.0,
+          "hash": "a719e520a33aa19a"
+        }
+      ]
+    },
+    {
+      "id": "typography/scale",
+      "title": "Type scale",
+      "component": "Typography",
+      "code": [
+        {
+          "text": "v_flex()\n    .w(px(420.))\n    .gap_1()\n    .children((1..=6).map(|level| Heading::new(level, format!(\"Heading {level}\"))))\n    .child(Lead::new(\n        \"A lead paragraph stands out from the regular body text.\",\n    ))\n    .child(Muted::new(\"Secondary body text for captions and help.\"))"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/typography/scale/bootstrap-light/default.png",
+          "width": 408,
+          "height": 332,
+          "scale": 2.0,
+          "hash": "cc8e075ab55ee294"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "",
+          "is_default": true,
+          "file": "snapshots/typography/scale/bootstrap-dark/default.png",
+          "width": 408,
+          "height": 332,
+          "scale": 2.0,
+          "hash": "0cb8494efa41e557"
+        }
+      ]
+    },
+    {
+      "id": "nav/playground",
+      "title": "Playground",
+      "component": "Nav",
+      "code": [
+        {
+          "text": "Nav::new(\"nav\")\n    .nav_style("
+        },
+        {
+          "knob": "style",
+          "code": {
+            "links": "NavStyle::Links",
+            "pills": "NavStyle::Pills",
+            "tabs": "NavStyle::Tabs",
+            "underline": "NavStyle::Underline"
+          }
+        },
+        {
+          "text": ")\n    .fill("
+        },
+        {
+          "knob": "fill"
+        },
+        {
+          "text": ")\n    .w(px(480.))\n    .item(NavItem::new(\"active\", \"Active\").active(true))\n    .item(NavItem::new(\"link\", \"Link\"))\n    .item(NavItem::new(\"another\", \"Another link\"))\n    .item(NavItem::new(\"disabled\", \"Disabled\").disabled(true))"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "style",
+          "type": "select",
+          "options": [
+            "links",
+            "tabs",
+            "pills",
+            "underline"
+          ],
+          "default": "tabs"
+        },
+        {
+          "name": "fill",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "style=tabs,fill=false",
+          "values": {
+            "fill": false,
+            "style": "tabs"
+          },
+          "is_default": true,
+          "file": "snapshots/nav/playground/bootstrap-light/default.png",
+          "width": 512,
+          "height": 66,
+          "scale": 2.0,
+          "hash": "8846b025bd60d88a"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=tabs,fill=true",
+          "values": {
+            "fill": true,
+            "style": "tabs"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/fill=true.png",
+          "width": 512,
+          "height": 66,
+          "scale": 2.0,
+          "hash": "053f3cc66b750f22"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=links,fill=false",
+          "values": {
+            "fill": false,
+            "style": "links"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=links.png",
+          "width": 377,
+          "height": 44,
+          "scale": 2.0,
+          "hash": "05e988df39c0648b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=links,fill=true",
+          "values": {
+            "fill": true,
+            "style": "links"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=links,fill=true.png",
+          "width": 453,
+          "height": 44,
+          "scale": 2.0,
+          "hash": "234df3b2dc1ed85b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=pills,fill=false",
+          "values": {
+            "fill": false,
+            "style": "pills"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=pills.png",
+          "width": 405,
+          "height": 64,
+          "scale": 2.0,
+          "hash": "15539c6c3bdbe6f9"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=pills,fill=true",
+          "values": {
+            "fill": true,
+            "style": "pills"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=pills,fill=true.png",
+          "width": 489,
+          "height": 64,
+          "scale": 2.0,
+          "hash": "0d9aec9829fdb235"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=underline,fill=false",
+          "values": {
+            "fill": false,
+            "style": "underline"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=underline.png",
+          "width": 336,
+          "height": 57,
+          "scale": 2.0,
+          "hash": "dfd7a17827ae4551"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "style=underline,fill=true",
+          "values": {
+            "fill": true,
+            "style": "underline"
+          },
+          "file": "snapshots/nav/playground/bootstrap-light/style=underline,fill=true.png",
+          "width": 491,
+          "height": 57,
+          "scale": 2.0,
+          "hash": "154a8441d146ab21"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=tabs,fill=false",
+          "values": {
+            "fill": false,
+            "style": "tabs"
+          },
+          "is_default": true,
+          "file": "snapshots/nav/playground/bootstrap-dark/default.png",
+          "width": 512,
+          "height": 66,
+          "scale": 2.0,
+          "hash": "e4457d02aeffa911"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=tabs,fill=true",
+          "values": {
+            "fill": true,
+            "style": "tabs"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/fill=true.png",
+          "width": 512,
+          "height": 66,
+          "scale": 2.0,
+          "hash": "e111ae40f0b39b81"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=links,fill=false",
+          "values": {
+            "fill": false,
+            "style": "links"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=links.png",
+          "width": 377,
+          "height": 44,
+          "scale": 2.0,
+          "hash": "c87d5d025508cf15"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=links,fill=true",
+          "values": {
+            "fill": true,
+            "style": "links"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=links,fill=true.png",
+          "width": 453,
+          "height": 44,
+          "scale": 2.0,
+          "hash": "8ba0847122f09755"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=pills,fill=false",
+          "values": {
+            "fill": false,
+            "style": "pills"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=pills.png",
+          "width": 405,
+          "height": 64,
+          "scale": 2.0,
+          "hash": "683186838fd885e8"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=pills,fill=true",
+          "values": {
+            "fill": true,
+            "style": "pills"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=pills,fill=true.png",
+          "width": 489,
+          "height": 64,
+          "scale": 2.0,
+          "hash": "6624e87b9ab9d000"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=underline,fill=false",
+          "values": {
+            "fill": false,
+            "style": "underline"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=underline.png",
+          "width": 336,
+          "height": 57,
+          "scale": 2.0,
+          "hash": "346c1d3340c1bdb8"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "style=underline,fill=true",
+          "values": {
+            "fill": true,
+            "style": "underline"
+          },
+          "file": "snapshots/nav/playground/bootstrap-dark/style=underline,fill=true.png",
+          "width": 491,
+          "height": 57,
+          "scale": 2.0,
+          "hash": "b1f45c93205b84c4"
+        }
+      ]
+    },
+    {
+      "id": "breadcrumb/basic",
+      "title": "Breadcrumb",
+      "component": "Breadcrumb",
+      "code": [
+        {
+          "text": "Breadcrumb::new(\"breadcrumb\")\n    .divider("
+        },
+        {
+          "knob": "divider"
+        },
+        {
+          "text": ")\n    .item(\"Home\", |_, _, _| {})\n    .item(\"Library\", |_, _, _| {})\n    .active(\"Data\")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "divider",
+          "type": "text",
+          "samples": [
+            "/",
+            ">"
+          ],
+          "default": "/"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "divider=/",
+          "values": {
+            "divider": "/"
+          },
+          "is_default": true,
+          "file": "snapshots/breadcrumb/basic/bootstrap-light/default.png",
+          "width": 217,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "f496320d89f85336"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "divider=>",
+          "values": {
+            "divider": ">"
+          },
+          "file": "snapshots/breadcrumb/basic/bootstrap-light/divider=_-5e6de9ed.png",
+          "width": 233,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "02a364ea23c78c92"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "divider=/",
+          "values": {
+            "divider": "/"
+          },
+          "is_default": true,
+          "file": "snapshots/breadcrumb/basic/bootstrap-dark/default.png",
+          "width": 217,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "dcf4d13470be00a9"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "divider=>",
+          "values": {
+            "divider": ">"
+          },
+          "file": "snapshots/breadcrumb/basic/bootstrap-dark/divider=_-5e6de9ed.png",
+          "width": 233,
+          "height": 48,
+          "scale": 2.0,
+          "hash": "abc558f29bbddc81"
+        }
+      ]
+    },
+    {
+      "id": "pagination/playground",
+      "title": "Playground",
+      "component": "Pagination",
+      "code": [
+        {
+          "text": "Pagination::new(\n    \"pagination\",\n    "
+        },
+        {
+          "knob": "page"
+        },
+        {
+          "text": " as usize,\n    "
+        },
+        {
+          "knob": "pages"
+        },
+        {
+          "text": " as usize,\n)\n.with_size("
+        },
+        {
+          "knob": "size",
+          "code": {
+            "large": "Size::Large",
+            "medium": "Size::Medium",
+            "small": "Size::Small"
+          }
+        },
+        {
+          "text": ")\n.disabled("
+        },
+        {
+          "knob": "disabled"
+        },
+        {
+          "text": ")"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "page",
+          "type": "number",
+          "min": 1.0,
+          "max": 20.0,
+          "step": 1.0,
+          "default": 4.0
+        },
+        {
+          "name": "pages",
+          "type": "number",
+          "min": 1.0,
+          "max": 50.0,
+          "step": 1.0,
+          "default": 20.0
+        },
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium"
+        },
+        {
+          "name": "disabled",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=medium,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "medium"
+          },
+          "is_default": true,
+          "file": "snapshots/pagination/playground/bootstrap-light/default.png",
+          "width": 375,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "dd1d3d4db0180e49"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=medium,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "medium"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-light/disabled=true.png",
+          "width": 375,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "48901793394166ac"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=small,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "small"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-light/size=small.png",
+          "width": 286,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "d9c580b59b1c587a"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=small,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "small"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-light/size=small,disabled=true.png",
+          "width": 286,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "87a23a0cb28c4960"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=large,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "large"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-light/size=large.png",
+          "width": 474,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "414ca73195fd0967"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "page=4,pages=20,size=large,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "large"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-light/size=large,disabled=true.png",
+          "width": 474,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "5067208c13e8a99d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=medium,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "medium"
+          },
+          "is_default": true,
+          "file": "snapshots/pagination/playground/bootstrap-dark/default.png",
+          "width": 375,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "567534dd7c995fb9"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=medium,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "medium"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-dark/disabled=true.png",
+          "width": 375,
+          "height": 70,
+          "scale": 2.0,
+          "hash": "1ce2d8e93b955715"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=small,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "small"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-dark/size=small.png",
+          "width": 286,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "666400da63d1e52a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=small,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "small"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-dark/size=small,disabled=true.png",
+          "width": 286,
+          "height": 63,
+          "scale": 2.0,
+          "hash": "2d375258378df712"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=large,disabled=false",
+          "values": {
+            "disabled": false,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "large"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-dark/size=large.png",
+          "width": 474,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "a92100d3c5305f0a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "page=4,pages=20,size=large,disabled=true",
+          "values": {
+            "disabled": true,
+            "page": 4.0,
+            "pages": 20.0,
+            "size": "large"
+          },
+          "file": "snapshots/pagination/playground/bootstrap-dark/size=large,disabled=true.png",
+          "width": 474,
+          "height": 80,
+          "scale": 2.0,
+          "hash": "2c6518e5951c3a62"
+        }
+      ]
+    },
+    {
+      "id": "modal/basic",
+      "title": "Modal",
+      "component": "Modal",
+      "description": "Press Escape or the backdrop to close it, then the button to reopen it.",
+      "code": [
+        {
+          "text": "cx.new(|_| ModalDemo {\n    handle: DialogHandle::new("
+        },
+        {
+          "knob": "open"
+        },
+        {
+          "text": "),\n    size: "
+        },
+        {
+          "knob": "size",
+          "code": {
+            "medium": "ModalSize::Medium",
+            "small": "ModalSize::Small"
+          }
+        },
+        {
+          "text": ",\n    centered: "
+        },
+        {
+          "knob": "centered"
+        },
+        {
+          "text": ",\n})"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "open",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium"
+          ],
+          "default": "small"
+        },
+        {
+          "name": "centered",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "open=true,size=small,centered=false",
+          "values": {
+            "centered": false,
+            "open": true,
+            "size": "small"
+          },
+          "is_default": true,
+          "file": "snapshots/modal/basic/bootstrap-light/default.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "c42b9ef1b9c15f6b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=true,size=small,centered=true",
+          "values": {
+            "centered": true,
+            "open": true,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "0c15e22c446fa948"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=true,size=medium,centered=false",
+          "values": {
+            "centered": false,
+            "open": true,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/size=medium.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "eded85ff822b1dde"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=true,size=medium,centered=true",
+          "values": {
+            "centered": true,
+            "open": true,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/size=medium,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "f80c80ebfd1ed107"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=false,size=small,centered=false",
+          "values": {
+            "centered": false,
+            "open": false,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/open=false.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "224e1bc76f9a0967"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=false,size=small,centered=true",
+          "values": {
+            "centered": true,
+            "open": false,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/open=false,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "224e1bc76f9a0967"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=false,size=medium,centered=false",
+          "values": {
+            "centered": false,
+            "open": false,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/open=false,size=medium.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "224e1bc76f9a0967"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "open=false,size=medium,centered=true",
+          "values": {
+            "centered": true,
+            "open": false,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-light/open=false,size=medium,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "224e1bc76f9a0967"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=true,size=small,centered=false",
+          "values": {
+            "centered": false,
+            "open": true,
+            "size": "small"
+          },
+          "is_default": true,
+          "file": "snapshots/modal/basic/bootstrap-dark/default.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "715d29cb29a369a9"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=true,size=small,centered=true",
+          "values": {
+            "centered": true,
+            "open": true,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "c8638e06db01b145"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=true,size=medium,centered=false",
+          "values": {
+            "centered": false,
+            "open": true,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/size=medium.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "ada219c7133dbd8d"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=true,size=medium,centered=true",
+          "values": {
+            "centered": true,
+            "open": true,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/size=medium,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "a375ff52adf2049b"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=false,size=small,centered=false",
+          "values": {
+            "centered": false,
+            "open": false,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/open=false.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "6bf99ab444698057"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=false,size=small,centered=true",
+          "values": {
+            "centered": true,
+            "open": false,
+            "size": "small"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/open=false,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "6bf99ab444698057"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=false,size=medium,centered=false",
+          "values": {
+            "centered": false,
+            "open": false,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/open=false,size=medium.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "6bf99ab444698057"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "open=false,size=medium,centered=true",
+          "values": {
+            "centered": true,
+            "open": false,
+            "size": "medium"
+          },
+          "file": "snapshots/modal/basic/bootstrap-dark/open=false,size=medium,centered=true.png",
+          "width": 672,
+          "height": 392,
+          "scale": 2.0,
+          "hash": "6bf99ab444698057"
+        }
+      ]
+    },
+    {
+      "id": "form-control/basic",
+      "title": "Labelled field",
+      "component": "FormControl",
+      "description": "Click it and type. Changing a knob rebuilds the view and its InputState.",
+      "code": [
+        {
+          "text": "cx.new(|cx| FormControlDemo {\n    input: cx.new(|cx| {\n        InputState::new(window, cx)\n            .placeholder(\"name@example.com\")\n            .default_value("
+        },
+        {
+          "knob": "value"
+        },
+        {
+          "text": ")\n    }),\n    size: "
+        },
+        {
+          "knob": "size",
+          "code": {
+            "large": "Size::Large",
+            "medium": "Size::Medium",
+            "small": "Size::Small"
+          }
+        },
+        {
+          "text": ",\n    disabled: "
+        },
+        {
+          "knob": "disabled"
+        },
+        {
+          "text": ",\n    validity: "
+        },
+        {
+          "knob": "validity",
+          "code": {
+            "invalid": "Some(false)",
+            "none": "None",
+            "valid": "Some(true)"
+          }
+        },
+        {
+          "text": ",\n})"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "value",
+          "type": "text",
+          "samples": [
+            "",
+            "mark@example.com"
+          ],
+          "default": ""
+        },
+        {
+          "name": "size",
+          "type": "select",
+          "options": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium"
+        },
+        {
+          "name": "disabled",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "validity",
+          "type": "select",
+          "options": [
+            "none",
+            "valid",
+            "invalid"
+          ],
+          "default": "none"
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=medium,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "none",
+            "value": ""
+          },
+          "is_default": true,
+          "file": "snapshots/form-control/basic/bootstrap-light/default.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "e3ccd835c1875160"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=mark@example.com,size=medium,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "none",
+            "value": "mark@example.com"
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/value=mark_example.com-78d2aebd.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "de2a0a6dd773d817"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=small,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "small",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/size=small.png",
+          "width": 392,
+          "height": 133,
+          "scale": 2.0,
+          "hash": "cb740d0dd8a877e9"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=large,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "large",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/size=large.png",
+          "width": 392,
+          "height": 161,
+          "scale": 2.0,
+          "hash": "3fd7846aa74c3b5d"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=medium,disabled=true,validity=none",
+          "values": {
+            "disabled": true,
+            "size": "medium",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/disabled=true.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "5516980e46062676"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=medium,disabled=false,validity=valid",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "valid",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/validity=valid.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "6c244380deaaa59e"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "value=,size=medium,disabled=false,validity=invalid",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "invalid",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-light/validity=invalid.png",
+          "width": 392,
+          "height": 142,
+          "scale": 2.0,
+          "hash": "fea0d1aeb118d9b8"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=medium,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "none",
+            "value": ""
+          },
+          "is_default": true,
+          "file": "snapshots/form-control/basic/bootstrap-dark/default.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "140d4e77943ac0ad"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=mark@example.com,size=medium,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "none",
+            "value": "mark@example.com"
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/value=mark_example.com-78d2aebd.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "ac03a93b9441dba3"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=small,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "small",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/size=small.png",
+          "width": 392,
+          "height": 133,
+          "scale": 2.0,
+          "hash": "37cf12e1942802c9"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=large,disabled=false,validity=none",
+          "values": {
+            "disabled": false,
+            "size": "large",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/size=large.png",
+          "width": 392,
+          "height": 161,
+          "scale": 2.0,
+          "hash": "5b18151c9bbf54a7"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=medium,disabled=true,validity=none",
+          "values": {
+            "disabled": true,
+            "size": "medium",
+            "validity": "none",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/disabled=true.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "5ac8a1e377a15ad6"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=medium,disabled=false,validity=valid",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "valid",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/validity=valid.png",
+          "width": 392,
+          "height": 145,
+          "scale": 2.0,
+          "hash": "961774fe0cc74c69"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "value=,size=medium,disabled=false,validity=invalid",
+          "values": {
+            "disabled": false,
+            "size": "medium",
+            "validity": "invalid",
+            "value": ""
+          },
+          "file": "snapshots/form-control/basic/bootstrap-dark/validity=invalid.png",
+          "width": 392,
+          "height": 142,
+          "scale": 2.0,
+          "hash": "85797d10472dbc15"
+        }
+      ]
+    },
+    {
+      "id": "checks/playground",
+      "title": "Checkbox, radio and switch",
+      "component": "Checks",
+      "code": [
+        {
+          "text": "let checked = "
+        },
+        {
+          "knob": "checked"
+        },
+        {
+          "text": ";\nlet disabled = "
+        },
+        {
+          "knob": "disabled"
+        },
+        {
+          "text": ";\nv_flex()\n    .gap_2()\n    .child(\n        Checkbox::new(\"checkbox\")\n            .label(\"Checkbox\")\n            .checked(checked)\n            .indeterminate("
+        },
+        {
+          "knob": "indeterminate"
+        },
+        {
+          "text": ")\n            .disabled(disabled),\n    )\n    .child(\n        Radio::new(\"radio\")\n            .label(\"Radio\")\n            .checked(checked)\n            .disabled(disabled),\n    )\n    .child(\n        Switch::new(\"switch\")\n            .label(\"Switch\")\n            .checked(checked)\n            .disabled(disabled),\n    )"
+        }
+      ],
+      "knobs": [
+        {
+          "name": "checked",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "name": "disabled",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "bool",
+          "default": false
+        }
+      ],
+      "themes": [
+        "bootstrap-light",
+        "bootstrap-dark"
+      ],
+      "variants": [
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=true,disabled=false,indeterminate=false",
+          "values": {
+            "checked": true,
+            "disabled": false,
+            "indeterminate": false
+          },
+          "is_default": true,
+          "file": "snapshots/checks/playground/bootstrap-light/default.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "3f36d2b1064b6284"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=true,disabled=false,indeterminate=true",
+          "values": {
+            "checked": true,
+            "disabled": false,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "03c420897dbd8af0"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=true,disabled=true,indeterminate=false",
+          "values": {
+            "checked": true,
+            "disabled": true,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/disabled=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "88aff555ba1b12d3"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=true,disabled=true,indeterminate=true",
+          "values": {
+            "checked": true,
+            "disabled": true,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/disabled=true,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "3b9741d9eb6f08d3"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=false,disabled=false,indeterminate=false",
+          "values": {
+            "checked": false,
+            "disabled": false,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/checked=false.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "77f156842a827d70"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=false,disabled=false,indeterminate=true",
+          "values": {
+            "checked": false,
+            "disabled": false,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/checked=false,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "270830450659eef8"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=false,disabled=true,indeterminate=false",
+          "values": {
+            "checked": false,
+            "disabled": true,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/checked=false,disabled=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "68c079a4ebb2fa0b"
+        },
+        {
+          "theme": "bootstrap-light",
+          "key": "checked=false,disabled=true,indeterminate=true",
+          "values": {
+            "checked": false,
+            "disabled": true,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-light/checked=false,disabled=true,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "caf4d8017b854b13"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=true,disabled=false,indeterminate=false",
+          "values": {
+            "checked": true,
+            "disabled": false,
+            "indeterminate": false
+          },
+          "is_default": true,
+          "file": "snapshots/checks/playground/bootstrap-dark/default.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "82e05f32f8ee3b16"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=true,disabled=false,indeterminate=true",
+          "values": {
+            "checked": true,
+            "disabled": false,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "3eb67905f88bc60a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=true,disabled=true,indeterminate=false",
+          "values": {
+            "checked": true,
+            "disabled": true,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/disabled=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "41ff118b33ee8819"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=true,disabled=true,indeterminate=true",
+          "values": {
+            "checked": true,
+            "disabled": true,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/disabled=true,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "ec227d0a219ee349"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=false,disabled=false,indeterminate=false",
+          "values": {
+            "checked": false,
+            "disabled": false,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/checked=false.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "549d292028287b4a"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=false,disabled=false,indeterminate=true",
+          "values": {
+            "checked": false,
+            "disabled": false,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/checked=false,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "23903d0456c389ea"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=false,disabled=true,indeterminate=false",
+          "values": {
+            "checked": false,
+            "disabled": true,
+            "indeterminate": false
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/checked=false,disabled=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "2ba734b064e26be9"
+        },
+        {
+          "theme": "bootstrap-dark",
+          "key": "checked=false,disabled=true,indeterminate=true",
+          "values": {
+            "checked": false,
+            "disabled": true,
+            "indeterminate": true
+          },
+          "file": "snapshots/checks/playground/bootstrap-dark/checked=false,disabled=true,indeterminate=true.png",
+          "width": 134,
+          "height": 112,
+          "scale": 2.0,
+          "hash": "625d5fb48f938321"
+        }
+      ]
+    }
+  ]
+}

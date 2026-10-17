@@ -18,6 +18,10 @@
 //!     // ...open a window and render `Button::new("save").label("Save")`.
 //! });
 //! ```
+#![cfg_attr(
+    feature = "styleguide",
+    doc = gpui_styleguidist::preview_html!("button/variants", variants = false)
+)]
 
 pub mod alert;
 pub mod badge;

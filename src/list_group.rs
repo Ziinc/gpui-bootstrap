@@ -15,6 +15,7 @@ use crate::{ActiveTheme as _, Variant};
 type ClickHandler = Rc<dyn Fn(&ClickEvent, &mut Window, &mut App)>;
 
 /// A bordered list of items.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("list-group/basic"))]
 #[derive(IntoElement)]
 pub struct ListGroup {
     id: ElementId,

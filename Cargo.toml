@@ -13,12 +13,42 @@ edition = "2024"
 # gpui-kit pins its own gpui-pre snapshot and re-exports GPUI at its root, so
 # this crate never lists GPUI itself. Bump in lockstep with gpui-kit.
 gpui-kit = "=0.7.3"
+# Rendered previews in rustdoc (`--features styleguide`). Optional so
+# applications don't build it.
+gpui-styleguidist = { git = "https://github.com/Ziinc/gpui-styleguidist", rev = "7af7f20d75ae7e2cf576873d42fbcc505c10eabe", default-features = false, features = ["macros"], optional = true }
+
+[features]
+styleguide = ["dep:gpui-styleguidist"]
 
 [dev-dependencies]
-gpui-kit = { version = "=0.7.3", features = ["test-support"] }
 anyhow = "1"
+
+# Native: the gallery, the styleguide window and headless snapshot rendering.
+[target.'cfg(not(target_family = "wasm"))'.dev-dependencies]
+gpui-kit = { version = "=0.7.3", features = ["test-support"] }
+gpui-styleguidist = { git = "https://github.com/Ziinc/gpui-styleguidist", rev = "7af7f20d75ae7e2cf576873d42fbcc505c10eabe", features = ["gallery", "render"] }
 # The gallery's `--screenshot` mode writes PNGs.
 image = { version = "0.25", default-features = false, features = ["png"] }
 
+# wasm32: the browser styleguide that `cargo styleguide build` packages.
+[target.'cfg(target_family = "wasm")'.dev-dependencies]
+gpui-styleguidist = { git = "https://github.com/Ziinc/gpui-styleguidist", rev = "7af7f20d75ae7e2cf576873d42fbcc505c10eabe", features = ["web"] }
+
 [[example]]
 name = "gallery"
+
+[[example]]
+name = "styleguide"
+
+[package.metadata.docs.rs]
+features = ["styleguide"]
+rustdoc-args = ["--html-in-header", "styleguide/header.html"]
+
+# `cargo styleguide build --profile styleguide`: the web styleguide is a
+# download, so trade build time for size.
+[profile.styleguide]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true

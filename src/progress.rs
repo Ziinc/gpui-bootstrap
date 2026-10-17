@@ -14,6 +14,10 @@ use crate::{ActiveTheme as _, Variant};
 /// A progress track holding one or more [`ProgressBar`]s side by side.
 ///
 /// Value semantics and accessibility come from [`gpui_kit::base::Progress`].
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("progress/playground")
+)]
 #[derive(IntoElement)]
 pub struct Progress {
     id: ElementId,
