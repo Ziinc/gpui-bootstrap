@@ -8,7 +8,7 @@ use gpui_kit::{
     base::{self, StyledExt as _},
     div,
     prelude::FluentBuilder as _,
-    px, relative,
+    relative,
 };
 
 use crate::{ActiveTheme as _, ButtonColors, Size, Theme, Variant};
@@ -171,15 +171,6 @@ fn link_colors(theme: &Theme) -> ButtonColors {
     }
 }
 
-/// Bootstrap's `$btn-padding-y`, `$btn-padding-x` for each size.
-pub(crate) fn button_padding(size: Size) -> (f32, f32) {
-    match size {
-        Size::Small => (4., 8.),
-        Size::Medium => (6., 12.),
-        Size::Large => (8., 16.),
-    }
-}
-
 impl RenderOnce for Button {
     fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
         let focus = window
@@ -194,8 +185,11 @@ impl RenderOnce for Button {
             ButtonStyle::Link => link_colors(theme),
         };
         let is_link = self.button_style == ButtonStyle::Link;
-        let (padding_y, padding_x) = button_padding(self.size);
-        let radius = theme.radius.for_size(self.size);
+        let control = theme.controls.get(self.size);
+        let radius = theme
+            .controls
+            .button_radius
+            .unwrap_or(theme.radius.for_size(self.size));
         let interactive = !self.disabled && !self.active;
 
         base::Button::new(self.id)
@@ -208,8 +202,9 @@ impl RenderOnce for Button {
             .h_flex()
             .flex_shrink_0()
             .gap(theme.spacing(2))
-            .px(px(padding_x))
-            .py(px(padding_y))
+            .px(control.padding_x)
+            .py(control.padding_y)
+            .min_h(control.min_height)
             .text_size(theme.typography.for_size(self.size))
             .line_height(relative(theme.typography.line_height))
             .font_weight(theme.typography.font_weight_normal)

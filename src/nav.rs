@@ -176,6 +176,7 @@ impl RenderOnce for Nav {
                     .disabled(item.disabled)
                     .when(self.fill, |this| this.flex_1())
                     .py(theme.spacing(2))
+                    .min_h(theme.controls.medium.min_height)
                     .text_color(color)
                     .map(|this| match nav_style {
                         NavStyle::Links => this.px(theme.spacer),

@@ -91,6 +91,7 @@ impl RenderOnce for Alert {
             .child(
                 v_flex()
                     .flex_1()
+                    .min_w_0()
                     .gap(theme.spacing(2))
                     .when_some(self.heading, |this, heading| {
                         this.child(

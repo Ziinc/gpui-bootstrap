@@ -77,6 +77,45 @@ fn main() {
 }
 ```
 
+## Platform themes
+
+Built-in themes match each platform GPUI targets, in light and dark. They keep
+Bootstrap's components and swap in the platform's system palette, type scale,
+corner radii and control sizes (44pt touch targets on iOS, 40dp pill buttons on
+Android).
+
+```rust
+use gpui_bootstrap::{ColorMode, Platform, Theme};
+
+// Whatever OS the app runs on, following the window's appearance.
+Theme::native(ColorMode::from(window.appearance())).apply(cx);
+
+// Or a specific platform, overridden like any other theme.
+let mut theme = Theme::platform(Platform::Android, ColorMode::Dark);
+theme.colors.primary = rgb(0x006a6a).into();
+theme.apply(cx);
+```
+
+| `Platform` | Follows |
+| --- | --- |
+| `Web` (default) | Bootstrap 5.3 as shipped |
+| `MacOS` | Apple HIG, macOS system colors, 13pt type |
+| `Windows` | Fluent 2 / WinUI 3, 32px controls |
+| `Linux` | GNOME libadwaita |
+| `IOS` | Apple HIG, iOS system colors, 17pt type, 44pt targets |
+| `Android` | Material 3 baseline scheme |
+
+`Theme::change_mode` / `with_mode` follow the platform's palette for the new
+mode and keep any theme color you overrode.
+
+| macOS | Windows | Linux (GNOME) |
+| --- | --- | --- |
+| ![](docs/platforms/macos-light.png) | ![](docs/platforms/windows-light.png) | ![](docs/platforms/linux-dark.png) |
+
+| iOS | iOS dark | Android | Android dark |
+| --- | --- | --- | --- |
+| ![](docs/platforms/ios-light.png) | ![](docs/platforms/ios-dark.png) | ![](docs/platforms/android-light.png) | ![](docs/platforms/android-dark.png) |
+
 ## Theming
 
 `Theme` mirrors Bootstrap's Sass variables. Its fields are public: change the
@@ -108,6 +147,7 @@ Theme::change_mode(ColorMode::Dark, cx);
 | `colors` | the eight theme colors, `white`, `black`, `body_bg`, `body_color`, `emphasis_color`, `secondary_*`, `tertiary_*`, `border_color`, `border_color_translucent`, `link_color`, `link_hover_color`, `backdrop` |
 | `radius` | `sm`, `base`, `lg`, `xl`, `xxl`, `pill` |
 | `typography` | font families, `font_size_base/sm/lg`, `line_height`, weights, `headings` |
+| `controls` | `small`/`medium`/`large` padding and `min_height`, `button_radius` |
 | scalars | `spacer` (spacing scale via `theme.spacing(0..=5)`), `border_width`, `focus_ring_width`, `focus_ring_opacity`, `disabled_opacity`, `min_contrast_ratio` |
 
 `Theme::apply` also maps the tokens onto gpui-kit's own component theme, so
@@ -123,7 +163,7 @@ Read the active theme in your own components with `cx.theme()` (trait
 ```sh
 cargo run --example gallery
 # Headless PNG (Linux needs Vulkan, e.g. mesa-vulkan-drivers):
-cargo run --example gallery -- --screenshot out.png --dark --theme brand
+cargo run --example gallery -- --screenshot out.png --dark --theme android
 ```
 
 ## License
