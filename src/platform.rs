@@ -143,34 +143,67 @@ impl Palette {
             self.dark,
         ]
     }
+
+    /// Surface colors in [`surfaces_mut`] order.
+    pub fn surfaces(&self) -> [Hsla; 10] {
+        [
+            self.body_bg,
+            self.body_color,
+            self.emphasis_color,
+            self.secondary_color,
+            self.secondary_bg,
+            self.tertiary_color,
+            self.tertiary_bg,
+            self.border_color,
+            self.border_color_translucent,
+            self.backdrop,
+        ]
+    }
 }
 
-/// Applies `palette`'s surface colors, and the link colors derived from the
-/// theme's current primary, to `colors`.
-pub(crate) fn apply_surfaces(
-    colors: &mut ThemeColors,
-    palette: &Palette,
-    platform: Platform,
-    mode: ColorMode,
-) {
-    colors.body_bg = palette.body_bg;
-    colors.body_color = palette.body_color;
-    colors.emphasis_color = palette.emphasis_color;
-    colors.secondary_color = palette.secondary_color;
-    colors.secondary_bg = palette.secondary_bg;
-    colors.tertiary_color = palette.tertiary_color;
-    colors.tertiary_bg = palette.tertiary_bg;
-    colors.border_color = palette.border_color;
-    colors.border_color_translucent = palette.border_color_translucent;
-    colors.backdrop = palette.backdrop;
-    let primary = colors.primary;
-    (colors.link_color, colors.link_hover_color) = match (platform, mode) {
-        (_, ColorMode::Light) => (primary, shade(primary, 0.2)),
-        // Bootstrap lightens its mid-tone primary for dark links; the native
-        // palettes already ship a lighter dark-mode accent.
-        (Platform::Web, ColorMode::Dark) => (tint(primary, 0.4), tint(primary, 0.6)),
-        (_, ColorMode::Dark) => (primary, tint(primary, 0.2)),
-    };
+/// The surface colors of `colors`, in [`Palette::surfaces`] order.
+pub(crate) fn surfaces_mut(colors: &mut ThemeColors) -> [&mut Hsla; 10] {
+    [
+        &mut colors.body_bg,
+        &mut colors.body_color,
+        &mut colors.emphasis_color,
+        &mut colors.secondary_color,
+        &mut colors.secondary_bg,
+        &mut colors.tertiary_color,
+        &mut colors.tertiary_bg,
+        &mut colors.border_color,
+        &mut colors.border_color_translucent,
+        &mut colors.backdrop,
+    ]
+}
+
+impl Theme {
+    /// `--bs-link-color`: `colors.link_color`, or derived from `primary` so
+    /// links follow a primary override.
+    pub fn link_color(&self) -> Hsla {
+        self.colors.link_color.unwrap_or_else(|| {
+            let primary = self.colors.primary;
+            match (self.platform, self.mode) {
+                // Bootstrap lightens its mid-tone primary for dark links; the
+                // native palettes already ship a lighter dark-mode accent.
+                (Platform::Web, ColorMode::Dark) => tint(primary, 0.4),
+                _ => primary,
+            }
+        })
+    }
+
+    /// `--bs-link-hover-color`: `colors.link_hover_color`, or derived from
+    /// [`Theme::link_color`].
+    pub fn link_hover_color(&self) -> Hsla {
+        self.colors.link_hover_color.unwrap_or_else(|| {
+            let link = self.link_color();
+            match (self.platform, self.mode) {
+                (_, ColorMode::Light) => shade(link, 0.2),
+                (Platform::Web, ColorMode::Dark) => tint(self.colors.primary, 0.6),
+                (_, ColorMode::Dark) => tint(link, 0.2),
+            }
+        })
+    }
 }
 
 pub(crate) fn palette(platform: Platform, mode: ColorMode) -> Palette {
@@ -480,7 +513,6 @@ impl Theme {
                 dark: colors.dark,
                 white: hex(0xffffff),
                 black: hex(0x000000),
-                // Filled in by `apply_surfaces` below.
                 body_bg: colors.body_bg,
                 body_color: colors.body_color,
                 emphasis_color: colors.emphasis_color,
@@ -490,8 +522,8 @@ impl Theme {
                 tertiary_bg: colors.tertiary_bg,
                 border_color: colors.border_color,
                 border_color_translucent: colors.border_color_translucent,
-                link_color: colors.primary,
-                link_hover_color: colors.primary,
+                link_color: None,
+                link_hover_color: None,
                 backdrop: colors.backdrop,
             },
             radius: radii(4., 6., 8.),
@@ -504,7 +536,6 @@ impl Theme {
             disabled_opacity: 0.65,
             min_contrast_ratio: 4.5,
         };
-        apply_surfaces(&mut theme.colors, &colors, platform, mode);
 
         match platform {
             Platform::Web => {}

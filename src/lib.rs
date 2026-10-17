@@ -46,13 +46,34 @@ pub use theme::{
     ThemeColors, Typography, Variant, VariantColors,
 };
 
-use gpui_kit::App;
+use gpui_kit::{App, ElementId, FocusHandle, Window};
+
+/// The focus handle a control keeps across renders under `key`.
+pub(crate) fn use_focus(
+    key: impl Into<ElementId>,
+    window: &mut Window,
+    cx: &mut App,
+) -> FocusHandle {
+    window
+        .use_keyed_state(key.into(), cx, |_, cx| cx.focus_handle())
+        .read(cx)
+        .clone()
+}
+
+/// `key` scoped under `parent`, for the parts of a compound control.
+pub(crate) fn child_id(parent: &ElementId, key: impl Into<gpui_kit::SharedString>) -> ElementId {
+    ElementId::NamedChild(parent.clone().into(), key.into())
+}
 
 /// Initializes gpui-kit and installs the light [`Theme`] unless one is
-/// already set. Call it before opening windows.
+/// already set. Call it before opening windows. Calling it again keeps the
+/// installed theme.
 pub fn init(cx: &mut App) {
     gpui_kit::init(cx);
-    if !cx.has_global::<Theme>() {
+    // `gpui_kit::init` resets gpui-kit's theme, so re-sync it with ours.
+    if cx.has_global::<Theme>() {
+        Theme::global(cx).clone().apply(cx);
+    } else {
         Theme::light().apply(cx);
     }
 }
@@ -99,6 +120,21 @@ mod tests {
             assert!(kit.mode.is_dark());
             assert_eq!(kit.primary, theme.colors.primary);
             assert_eq!(kit.background, theme.colors.body_bg);
+        });
+    }
+
+    #[test]
+    fn second_init_keeps_kit_in_sync() {
+        let cx = TestAppContext::single();
+        cx.update(|cx| {
+            init(cx);
+            Theme::platform(Platform::Android, ColorMode::Dark).apply(cx);
+            init(cx);
+            let theme = Theme::global(cx);
+            let kit = gpui_kit::component::Theme::global(cx);
+            assert!(kit.mode.is_dark());
+            assert_eq!(kit.background, theme.colors.body_bg);
+            assert_eq!(kit.primary, theme.colors.primary);
         });
     }
 }

@@ -63,7 +63,6 @@ impl Preset {
                 theme.radius.sm = px(6.);
                 theme.radius.base = px(10.);
                 theme.radius.lg = px(14.);
-                theme = theme.with_mode(mode); // re-derive link colors
             }
             Preset::Flat => {
                 theme.radius.sm = px(0.);

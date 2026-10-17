@@ -164,13 +164,13 @@ fn link_colors(theme: &Theme) -> ButtonColors {
     ButtonColors {
         bg: transparent,
         border: transparent,
-        color: theme.colors.link_color,
+        color: theme.link_color(),
         hover_bg: transparent,
         hover_border: transparent,
-        hover_color: theme.colors.link_hover_color,
+        hover_color: theme.link_hover_color(),
         active_bg: transparent,
         active_border: transparent,
-        active_color: theme.colors.link_hover_color,
+        active_color: theme.link_hover_color(),
         focus_ring: theme.focus_ring_color(),
     }
 }
@@ -204,6 +204,7 @@ impl RenderOnce for Button {
                 this.accessibility_label(label)
             })
             .h_flex()
+            .relative()
             .flex_shrink_0()
             .gap(theme.spacing(2))
             .px(control.padding_x)
@@ -244,8 +245,19 @@ impl RenderOnce for Button {
                     .text_color(colors.active_color)
             })
             .when(self.disabled, |this| this.opacity(theme.disabled_opacity))
-            .when(focused, |this| {
-                this.shadow(vec![theme.focus_ring(colors.focus_ring)])
+            // A control disabled while focused keeps window focus; hide the
+            // ring like the browser does.
+            .when(focused && !self.disabled, |this| {
+                this.child(
+                    theme
+                        .focus_ring_outline(colors.focus_ring, radius)
+                        .map(|ring| match self.group_position {
+                            None => ring,
+                            Some(GroupPosition::First) => ring.rounded_r_none(),
+                            Some(GroupPosition::Middle) => ring.rounded_none(),
+                            Some(GroupPosition::Last) => ring.rounded_l_none(),
+                        }),
+                )
             })
             .when_some(self.on_click, |this, on_click| {
                 this.on_click(move |event, window, cx| on_click(event, window, cx))

@@ -76,13 +76,24 @@ impl Styled for Breadcrumb {
 }
 
 impl RenderOnce for Breadcrumb {
-    fn render(self, _: &mut Window, cx: &mut App) -> impl IntoElement {
+    fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
+        let focus: Vec<_> = (0..self.items.len())
+            .map(|index| {
+                let focus = crate::use_focus(
+                    crate::child_id(&self.id, format!("crumb-{index}")),
+                    window,
+                    cx,
+                );
+                let focused = focus.is_focused(window);
+                (focus, focused)
+            })
+            .collect();
         let theme = cx.theme();
         let count = self.items.len();
         let divider = self.divider;
         let (link, link_hover, muted) = (
-            theme.colors.link_color,
-            theme.colors.link_hover_color,
+            theme.link_color(),
+            theme.link_hover_color(),
             theme.colors.secondary_color,
         );
         let gap = theme.spacing(2);
@@ -91,33 +102,36 @@ impl RenderOnce for Breadcrumb {
             .role(Role::Navigation)
             .aria_label("Breadcrumb")
             .flex_wrap()
-            .children(
-                self.items
-                    .into_iter()
-                    .enumerate()
-                    .map(move |(index, crumb)| {
-                        let last = index + 1 == count;
-                        h_flex()
-                            .when(index > 0, |this| {
-                                this.child(div().px(gap).text_color(muted).child(divider.clone()))
-                            })
-                            .map(|this| match crumb.on_click.filter(|_| !last) {
-                                Some(on_click) => this.child(
-                                    base::Button::new(("crumb", index))
-                                        .role(Role::Link)
-                                        .text_color(link)
-                                        .underline()
-                                        .cursor_pointer()
-                                        .hover(move |style| style.text_color(link_hover))
-                                        .on_click(move |event, window, cx| {
-                                            on_click(event, window, cx)
-                                        })
-                                        .child(crumb.label),
-                                ),
-                                None => this.child(div().text_color(muted).child(crumb.label)),
-                            })
-                    }),
-            )
+            .children(self.items.into_iter().zip(focus).enumerate().map(
+                move |(index, (crumb, (focus, focused)))| {
+                    let last = index + 1 == count;
+                    h_flex()
+                        .when(index > 0, |this| {
+                            this.child(div().px(gap).text_color(muted).child(divider.clone()))
+                        })
+                        .map(|this| match crumb.on_click.filter(|_| !last) {
+                            Some(on_click) => this.child(
+                                base::Button::new(("crumb", index))
+                                    .track_focus(&focus)
+                                    .role(Role::Link)
+                                    .relative()
+                                    .text_color(link)
+                                    .underline()
+                                    .cursor_pointer()
+                                    .hover(move |style| style.text_color(link_hover))
+                                    .on_click(move |event, window, cx| on_click(event, window, cx))
+                                    .child(crumb.label)
+                                    .when(focused, |this| {
+                                        this.child(theme.focus_ring_outline(
+                                            theme.focus_ring_color(),
+                                            theme.radius.sm,
+                                        ))
+                                    }),
+                            ),
+                            None => this.child(div().text_color(muted).child(crumb.label)),
+                        })
+                },
+            ))
             .refine_style(&self.style)
     }
 }
