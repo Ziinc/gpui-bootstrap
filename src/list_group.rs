@@ -199,6 +199,7 @@ impl RenderOnce for ListGroupItem {
             .px(theme.spacer)
             .py(theme.spacing(2))
             .min_h(theme.controls.medium.min_height)
+            .line_height(gpui_kit::relative(theme.typography.line_height))
             .bg(bg)
             .text_color(color)
             .border_color(border)

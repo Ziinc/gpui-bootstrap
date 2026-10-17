@@ -3,8 +3,8 @@
 use std::rc::Rc;
 
 use gpui_kit::{
-    AnyElement, App, IntoElement, ParentElement, RenderOnce, SharedString, StyleRefinement, Styled,
-    Window,
+    AnyElement, App, ElementId, InteractiveElement as _, IntoElement, ParentElement, RenderOnce,
+    SharedString, StatefulInteractiveElement as _, StyleRefinement, Styled, Window,
     base::{
         DialogBackdrop, DialogChangeReason, DialogClose, DialogHandle, DialogPopup, DialogTitle,
         StyledExt as _, h_flex, v_flex,
@@ -40,6 +40,7 @@ pub enum ModalSize {
 #[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("modal/basic"))]
 #[derive(IntoElement)]
 pub struct Modal {
+    id: ElementId,
     handle: DialogHandle,
     title: Option<SharedString>,
     footer: Option<AnyElement>,
@@ -54,6 +55,7 @@ pub struct Modal {
 impl Modal {
     pub fn new(handle: &DialogHandle) -> Self {
         Self {
+            id: "modal".into(),
             handle: handle.clone(),
             title: None,
             footer: None,
@@ -67,6 +69,13 @@ impl Modal {
     }
 
     /// `.modal-title`, shown with a close button in `.modal-header`.
+    /// Distinguishes modals that are open at the same time, such as a
+    /// confirmation over a form. Defaults to `"modal"`.
+    pub fn id(mut self, id: impl Into<ElementId>) -> Self {
+        self.id = id.into();
+        self
+    }
+
     pub fn title(mut self, title: impl Into<SharedString>) -> Self {
         self.title = Some(title.into());
         self
@@ -122,7 +131,11 @@ impl RenderOnce for Modal {
             return div().into_any_element();
         }
         let close_focus = window
-            .use_keyed_state("modal-close", cx, |_, cx| cx.focus_handle())
+            .use_keyed_state(
+                ElementId::NamedChild(self.id.clone().into(), "close".into()),
+                cx,
+                |_, cx| cx.focus_handle(),
+            )
             .read(cx)
             .clone();
         let close_focused = close_focus.is_focused(window);
@@ -135,11 +148,16 @@ impl RenderOnce for Modal {
             ModalSize::ExtraLarge => px(1140.),
         };
         let padding = theme.spacer;
+        // `$modal-dialog-margin-y-sm-up: 1.75rem`, above and below.
+        let margin = px(28.);
         let divider = colors.border_color;
 
         let popup = DialogPopup::new()
             .w(width)
             .max_w(relative(1.))
+            // `.modal-dialog-scrollable`: the body scrolls so the header and
+            // footer stay reachable.
+            .max_h(window.viewport_size().height - margin * 2.)
             .flex()
             .flex_col()
             .bg(colors.body_bg)
@@ -152,12 +170,15 @@ impl RenderOnce for Modal {
                 this.child(
                     h_flex()
                         .justify_between()
+                        .flex_shrink_0()
                         .gap(theme.spacing(2))
                         .p(padding)
                         .border_b(theme.border_width)
                         .border_color(divider)
                         .child(
                             DialogTitle::new()
+                                .flex_1()
+                                .min_w_0()
                                 .text_size(theme.typography.headings[4])
                                 .font_weight(theme.typography.headings_font_weight)
                                 .line_height(relative(theme.typography.line_height))
@@ -171,6 +192,10 @@ impl RenderOnce for Modal {
             })
             .child(
                 v_flex()
+                    .id(ElementId::NamedChild(self.id.clone().into(), "body".into()))
+                    .flex_1()
+                    .min_h_0()
+                    .overflow_y_scroll()
                     .p(padding)
                     .gap(theme.spacing(2))
                     .children(self.children),
@@ -179,6 +204,7 @@ impl RenderOnce for Modal {
                 this.child(
                     h_flex()
                         .justify_end()
+                        .flex_shrink_0()
                         .flex_wrap()
                         .gap(theme.spacing(2))
                         .p(padding - theme.spacing(1))
@@ -200,7 +226,7 @@ impl RenderOnce for Modal {
             .popup(popup)
             .when(!self.centered, |this| {
                 // `$modal-dialog-margin-y-sm-up: 1.75rem`.
-                this.items_start().pt(px(28.))
+                this.items_start().pt(margin)
             })
             .px(theme.spacing(2))
             .refine_style(&self.style)

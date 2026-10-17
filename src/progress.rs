@@ -67,10 +67,14 @@ pub struct ProgressBar {
 }
 
 impl ProgressBar {
-    /// A bar `value` percent wide, clamped to `0..=100`.
+    /// A bar `value` percent wide, clamped to `0..=100`. NaN counts as 0.
     pub fn new(value: f32) -> Self {
         Self {
-            value: value.clamp(0., 100.),
+            value: if value.is_nan() {
+                0.
+            } else {
+                value.clamp(0., 100.)
+            },
             variant: Variant::Primary,
             label: None,
         }
@@ -108,9 +112,12 @@ impl RenderOnce for Progress {
             .text_size(height * 0.75)
             .children(self.bars.into_iter().map(|bar| {
                 let colors = theme.variant(bar.variant);
+                // Bars past 100% in total are clipped by the track, not
+                // squeezed to fit.
                 div()
                     .h_full()
                     .w(relative(bar.value / 100.))
+                    .flex_shrink_0()
                     .flex()
                     .items_center()
                     .justify_center()

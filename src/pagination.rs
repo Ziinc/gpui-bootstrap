@@ -6,9 +6,9 @@ use gpui_kit::{
     App, ElementId, InteractiveElement as _, IntoElement, ParentElement as _, RenderOnce,
     SharedString, StyleRefinement, Styled, Window,
     base::{self, PaginationItem, PaginationState, StyledExt as _},
-    div,
+    deferred, div,
     prelude::FluentBuilder as _,
-    relative,
+    px, relative,
 };
 
 use crate::{ActiveTheme as _, Size};
@@ -87,9 +87,7 @@ enum Link {
 }
 
 impl RenderOnce for Pagination {
-    fn render(self, _: &mut Window, cx: &mut App) -> impl IntoElement {
-        let theme = cx.theme();
-        let colors = &theme.colors;
+    fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
         let mut state = PaginationState::new(self.current_page, self.total_pages)
             .visible_pages(self.visible_pages)
             .disabled(self.disabled);
@@ -102,7 +100,24 @@ impl RenderOnce for Pagination {
             PaginationItem::Page(page) => Link::Page(page),
             PaginationItem::Ellipsis(_) => Link::Ellipsis,
         }));
+        // Base pagination lists no pages for a single page; still show it.
+        if links.len() == 1 {
+            links.push(Link::Page(current.max(1)));
+        }
         links.push(Link::Next(state.next_page()));
+        let focus: Vec<_> = (0..links.len())
+            .map(|index| {
+                let focus = crate::use_focus(
+                    crate::child_id(&self.id, format!("page-{index}")),
+                    window,
+                    cx,
+                );
+                let focused = focus.is_focused(window);
+                (focus, focused)
+            })
+            .collect();
+        let theme = cx.theme();
+        let colors = &theme.colors;
 
         let count = links.len();
         let control = theme.controls.get(self.size);
@@ -113,62 +128,82 @@ impl RenderOnce for Pagination {
 
         base::Pagination::new(self.id, state)
             .flex()
-            .children(links.into_iter().enumerate().map(|(index, link)| {
-                let (label, target, active): (SharedString, Option<usize>, bool) = match link {
-                    Link::Previous(page) => ("«".into(), page, false),
-                    Link::Next(page) => ("»".into(), page, false),
-                    Link::Page(page) => (page.to_string().into(), Some(page), page == current),
-                    Link::Ellipsis => ("…".into(), None, false),
-                };
-                let enabled = !disabled && target.is_some() && !active;
-                let (bg, color, border) = if active {
-                    (
-                        colors.primary,
-                        theme.contrast(colors.primary),
-                        colors.primary,
-                    )
-                } else if enabled {
-                    (colors.body_bg, colors.link_color, colors.border_color)
-                } else {
-                    (
-                        colors.secondary_bg,
-                        colors.secondary_color,
-                        colors.border_color,
-                    )
-                };
-                let (hover_bg, hover_color) = (colors.tertiary_bg, colors.link_hover_color);
-                let on_change = on_change.clone();
-                base::Button::new(("page", index))
-                    .disabled(!enabled)
-                    .selected(active)
-                    .when(matches!(index, 0), |this| {
-                        this.accessibility_label("Previous")
-                    })
-                    .when(index + 1 == count, |this| this.accessibility_label("Next"))
-                    .px(control.padding_x)
-                    .py(control.padding_y)
-                    .min_h(control.min_height)
-                    .min_w(control.min_height)
-                    .text_size(font_size)
-                    .line_height(relative(theme.typography.line_height))
-                    .bg(bg)
-                    .text_color(color)
-                    .border(theme.border_width)
-                    .border_color(border)
-                    .when(index > 0, |this| this.border_l_0())
-                    .when(index == 0, |this| this.rounded_l(radius))
-                    .when(index + 1 == count, |this| this.rounded_r(radius))
-                    .when(enabled, |this| {
-                        this.hover(move |style| style.bg(hover_bg).text_color(hover_color))
-                    })
-                    .when_some(
-                        target.filter(|_| enabled).zip(on_change),
-                        |this, (page, on_change)| {
-                            this.on_click(move |_, window, cx| on_change(page, window, cx))
-                        },
-                    )
-                    .child(div().child(label))
-            }))
+            .children(links.into_iter().zip(focus).enumerate().map(
+                |(index, (link, (focus, focused)))| {
+                    let (label, target, active): (SharedString, Option<usize>, bool) = match link {
+                        Link::Previous(page) => ("«".into(), page, false),
+                        Link::Next(page) => ("»".into(), page, false),
+                        Link::Page(page) => {
+                            (page.to_string().into(), Some(page), page == current.max(1))
+                        }
+                        Link::Ellipsis => ("…".into(), None, false),
+                    };
+                    let enabled = !disabled && target.is_some() && !active;
+                    let (bg, color, border) = if active {
+                        (
+                            colors.primary,
+                            theme.contrast(colors.primary),
+                            colors.primary,
+                        )
+                    } else if enabled {
+                        (colors.body_bg, theme.link_color(), colors.border_color)
+                    } else {
+                        (
+                            colors.secondary_bg,
+                            colors.secondary_color,
+                            colors.border_color,
+                        )
+                    };
+                    let (hover_bg, hover_color) = (colors.tertiary_bg, theme.link_hover_color());
+                    let on_change = on_change.clone();
+                    base::Button::new(("page", index))
+                        .track_focus(&focus)
+                        .disabled(!enabled)
+                        .selected(active)
+                        .when(matches!(index, 0), |this| {
+                            this.accessibility_label("Previous")
+                        })
+                        .when(index + 1 == count, |this| this.accessibility_label("Next"))
+                        .px(control.padding_x)
+                        .py(control.padding_y)
+                        .min_h(control.min_height)
+                        .min_w(control.min_height)
+                        .relative()
+                        .flex_shrink_0()
+                        .text_size(font_size)
+                        .line_height(relative(theme.typography.line_height))
+                        .bg(bg)
+                        .text_color(color)
+                        .border(theme.border_width)
+                        .border_color(border)
+                        .when(index > 0, |this| this.border_l_0())
+                        .when(index == 0, |this| this.rounded_l(radius))
+                        .when(index + 1 == count, |this| this.rounded_r(radius))
+                        .when(enabled, |this| {
+                            this.hover(move |style| style.bg(hover_bg).text_color(hover_color))
+                        })
+                        .when_some(
+                            target.filter(|_| enabled).zip(on_change),
+                            |this, (page, on_change)| {
+                                this.on_click(move |_, window, cx| on_change(page, window, cx))
+                            },
+                        )
+                        .child(div().child(label))
+                        // The next item paints over this one, so defer the ring.
+                        .when(focused && enabled, |this| {
+                            this.child(deferred(
+                                theme
+                                    .focus_ring_outline(theme.focus_ring_color(), px(0.))
+                                    .when(index == 0, |ring| {
+                                        ring.rounded_l(radius + theme.focus_ring_width)
+                                    })
+                                    .when(index + 1 == count, |ring| {
+                                        ring.rounded_r(radius + theme.focus_ring_width)
+                                    }),
+                            ))
+                        })
+                },
+            ))
             .refine_style(&self.style)
     }
 }

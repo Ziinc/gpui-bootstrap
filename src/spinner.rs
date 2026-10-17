@@ -3,9 +3,9 @@
 use std::time::Duration;
 
 use gpui_kit::{
-    Animation, AnimationExt as _, App, InteractiveElement as _, IntoElement, ParentElement as _,
-    RenderOnce, Role, StatefulInteractiveElement as _, StyleRefinement, Styled, Transformation,
-    Window,
+    Animation, AnimationExt as _, App, ElementId, InteractiveElement as _, IntoElement,
+    ParentElement as _, RenderOnce, Role, StatefulInteractiveElement as _, StyleRefinement, Styled,
+    Transformation, Window,
     base::StyledExt as _,
     component::{Icon, IconName},
     div, ease_in_out, percentage,
@@ -33,6 +33,7 @@ pub enum SpinnerStyle {
 )]
 #[derive(IntoElement)]
 pub struct Spinner {
+    id: ElementId,
     spinner_style: SpinnerStyle,
     variant: Option<Variant>,
     size: Size,
@@ -42,11 +43,19 @@ pub struct Spinner {
 impl Spinner {
     pub fn new() -> Self {
         Self {
+            id: "spinner".into(),
             spinner_style: SpinnerStyle::Border,
             variant: None,
             size: Size::Medium,
             style: StyleRefinement::default(),
         }
+    }
+
+    /// Distinguishes sibling spinners, whose animations otherwise share
+    /// state. Defaults to `"spinner"`.
+    pub fn id(mut self, id: impl Into<ElementId>) -> Self {
+        self.id = id.into();
+        self
     }
 
     pub fn spinner_style(mut self, style: SpinnerStyle) -> Self {
@@ -99,7 +108,7 @@ impl RenderOnce for Spinner {
         };
         let color = self.variant.map(|variant| theme.colors.variant(variant));
         div()
-            .id("spinner")
+            .id(self.id)
             .role(Role::ProgressIndicator)
             .aria_label("Loading")
             .size(size)

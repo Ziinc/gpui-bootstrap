@@ -215,13 +215,19 @@ fn check_row<E: Styled + gpui_kit::ParentElement + IntoElement>(
     disabled: bool,
     theme: &Theme,
 ) -> E {
+    // Hug the content so blank space beside the label doesn't toggle it, but
+    // stay within the container so long labels wrap.
     root.h_flex()
+        .self_start()
+        .max_w_full()
         .items_start()
         .gap(theme.spacing(2))
         .line_height(relative(theme.typography.line_height))
         .when(disabled, |this| this.opacity(0.5))
         .child(indicator)
-        .when_some(label, |this, label| this.child(div().child(label)))
+        .when_some(label, |this, label| {
+            this.child(div().flex_1().min_w_0().child(label))
+        })
 }
 
 /// The vertical offset that centers a 1em indicator on the first line,
@@ -256,13 +262,6 @@ macro_rules! check_builders {
             self
         }
     };
-}
-
-fn use_focus(id: &ElementId, window: &mut Window, cx: &mut App) -> gpui_kit::FocusHandle {
-    window
-        .use_keyed_state(id.clone(), cx, |_, cx| cx.focus_handle())
-        .read(cx)
-        .clone()
 }
 
 /// A checkbox, `.form-check-input[type=checkbox]`, over
@@ -304,7 +303,7 @@ impl Checkbox {
 
 impl RenderOnce for Checkbox {
     fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
-        let focus = use_focus(&self.id, window, cx);
+        let focus = crate::use_focus(self.id.clone(), window, cx);
         let focused = focus.is_focused(window);
         let theme = cx.theme();
         let filled = self.checked || self.indeterminate;
@@ -393,7 +392,7 @@ impl Radio {
 
 impl RenderOnce for Radio {
     fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
-        let focus = use_focus(&self.id, window, cx);
+        let focus = crate::use_focus(self.id.clone(), window, cx);
         let focused = focus.is_focused(window);
         let theme = cx.theme();
         let colors = check_colors(theme, self.checked, focused);
@@ -468,13 +467,15 @@ impl Switch {
 
 impl RenderOnce for Switch {
     fn render(self, window: &mut Window, cx: &mut App) -> impl IntoElement {
-        let focus = use_focus(&self.id, window, cx);
+        let focus = crate::use_focus(self.id.clone(), window, cx);
         let focused = focus.is_focused(window);
         let theme = cx.theme();
         let colors = check_colors(theme, self.checked, focused);
         let height = theme.typography.font_size_base;
-        // The knob is drawn at 3/4 of the track height, as in Bootstrap's SVG.
-        let knob = height * 0.75;
+        // The knob is drawn at 3/4 of the track height, as in Bootstrap's SVG,
+        // and never larger than the space inside the border.
+        let inner = (height - theme.border_width * 2.).max(gpui_kit::px(0.));
+        let knob = (height * 0.75).min(inner);
         let knob_color = match (self.checked, focused) {
             (true, _) => theme.contrast(theme.colors.primary),
             (false, true) => theme.input_focus_border_color(),
@@ -488,7 +489,7 @@ impl RenderOnce for Switch {
             .h(height)
             .flex()
             .items_center()
-            .px((height - knob) / 2. - theme.border_width)
+            .px(((inner - knob) / 2.).max(gpui_kit::px(0.)))
             .when(self.checked, |this| this.justify_end())
             .bg(colors.bg)
             .border(theme.border_width)

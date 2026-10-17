@@ -155,7 +155,7 @@ impl RenderOnce for Nav {
                 this.gap(theme.spacer)
             })
             .children(self.items.into_iter().enumerate().map(|(index, item)| {
-                let (link, link_hover) = (colors.link_color, colors.link_hover_color);
+                let (link, link_hover) = (theme.link_color(), theme.link_hover_color());
                 let color = if item.disabled {
                     colors.secondary_color
                 } else {

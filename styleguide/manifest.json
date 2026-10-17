@@ -701,7 +701,7 @@
           "width": 730,
           "height": 70,
           "scale": 2.0,
-          "hash": "ae5f5869c2012dac"
+          "hash": "c558d6ee7e4ff735"
         },
         {
           "theme": "bootstrap-dark",
@@ -723,10 +723,10 @@
             "style": "outline"
           },
           "file": "snapshots/button/variants/bootstrap-dark/style=outline.png",
-          "width": 660,
+          "width": 717,
           "height": 70,
           "scale": 2.0,
-          "hash": "ccf484b2f64bb14f"
+          "hash": "8035daef49e0eec8"
         }
       ]
     },
@@ -2277,7 +2277,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "28f78f736d94c1e8"
+          "hash": "c41d679465e238a2"
         },
         {
           "theme": "bootstrap-light",
@@ -2305,7 +2305,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "1674989877bc7441"
+          "hash": "834f25cc38265a27"
         },
         {
           "theme": "bootstrap-light",
@@ -2319,7 +2319,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "5f6de603226e45f1"
+          "hash": "4139cc06ca4345f2"
         },
         {
           "theme": "bootstrap-light",
@@ -2333,7 +2333,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "eff7169f2752e30d"
+          "hash": "03764cf0144c028f"
         },
         {
           "theme": "bootstrap-light",
@@ -2347,7 +2347,7 @@
           "width": 46,
           "height": 46,
           "scale": 2.0,
-          "hash": "a338f22d642fa0c2"
+          "hash": "203d001510cc70ad"
         },
         {
           "theme": "bootstrap-dark",
@@ -2362,7 +2362,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "706f77736cb6e133"
+          "hash": "d778dcb48c574525"
         },
         {
           "theme": "bootstrap-dark",
@@ -2390,7 +2390,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "ce26a4e27d02ccc3"
+          "hash": "99bf3147eb9e8678"
         },
         {
           "theme": "bootstrap-dark",
@@ -2404,7 +2404,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "7489f8666416eecd"
+          "hash": "f6e1df329c61f5be"
         },
         {
           "theme": "bootstrap-dark",
@@ -2418,7 +2418,7 @@
           "width": 59,
           "height": 59,
           "scale": 2.0,
-          "hash": "c660b01971b5d54f"
+          "hash": "2fd41959af941e71"
         },
         {
           "theme": "bootstrap-dark",
@@ -2432,7 +2432,7 @@
           "width": 46,
           "height": 46,
           "scale": 2.0,
-          "hash": "2b98b108bd5a3df5"
+          "hash": "16a95ee92910c0dc"
         }
       ]
     },
@@ -2779,9 +2779,9 @@
           "is_default": true,
           "file": "snapshots/list-group/basic/bootstrap-light/default.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "56cf23ef3acd7405"
+          "hash": "96b821b4a4b21805"
         },
         {
           "theme": "bootstrap-light",
@@ -2792,9 +2792,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-light/flush=true.png",
           "width": 320,
-          "height": 188,
+          "height": 224,
           "scale": 2.0,
-          "hash": "c2e27d452782b451"
+          "hash": "e49de082bcbb3451"
         },
         {
           "theme": "bootstrap-light",
@@ -2805,9 +2805,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-light/active=none.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "e8dc3eadf55e2e56"
+          "hash": "e75e79c3c4767b56"
         },
         {
           "theme": "bootstrap-light",
@@ -2818,9 +2818,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-light/active=none,flush=true.png",
           "width": 320,
-          "height": 188,
+          "height": 224,
           "scale": 2.0,
-          "hash": "25f3294d27a7f792"
+          "hash": "dcbef13dd098d792"
         },
         {
           "theme": "bootstrap-light",
@@ -2831,9 +2831,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-light/active=first.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "d6e5886ef03b054a"
+          "hash": "d1fd6b2aa745784a"
         },
         {
           "theme": "bootstrap-light",
@@ -2844,9 +2844,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-light/active=first,flush=true.png",
           "width": 320,
-          "height": 197,
+          "height": 237,
           "scale": 2.0,
-          "hash": "ba00e30d34f26bea"
+          "hash": "f18f093c3c657bea"
         },
         {
           "theme": "bootstrap-dark",
@@ -2858,9 +2858,9 @@
           "is_default": true,
           "file": "snapshots/list-group/basic/bootstrap-dark/default.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "2f242c33e867494a"
+          "hash": "e83fb55e8cc3564a"
         },
         {
           "theme": "bootstrap-dark",
@@ -2871,9 +2871,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-dark/flush=true.png",
           "width": 320,
-          "height": 188,
+          "height": 224,
           "scale": 2.0,
-          "hash": "63e5e65094b55df6"
+          "hash": "6146ff7266450df6"
         },
         {
           "theme": "bootstrap-dark",
@@ -2884,9 +2884,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-dark/active=none.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "686244312fdc614c"
+          "hash": "f73aa78ab39aaecc"
         },
         {
           "theme": "bootstrap-dark",
@@ -2897,9 +2897,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-dark/active=none,flush=true.png",
           "width": 320,
-          "height": 188,
+          "height": 224,
           "scale": 2.0,
-          "hash": "ca58c240972ce0d8"
+          "hash": "7275d92ad605b0d8"
         },
         {
           "theme": "bootstrap-dark",
@@ -2910,9 +2910,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-dark/active=first.png",
           "width": 320,
-          "height": 198,
+          "height": 238,
           "scale": 2.0,
-          "hash": "6e94c8bf1d553eb6"
+          "hash": "17c58ecbd19a67b6"
         },
         {
           "theme": "bootstrap-dark",
@@ -2923,9 +2923,9 @@
           },
           "file": "snapshots/list-group/basic/bootstrap-dark/active=first,flush=true.png",
           "width": 320,
-          "height": 197,
+          "height": 237,
           "scale": 2.0,
-          "hash": "a719e520a33aa19a"
+          "hash": "6eea8c6df270b19a"
         }
       ]
     },

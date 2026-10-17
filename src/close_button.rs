@@ -65,13 +65,18 @@ impl RenderOnce for CloseButton {
             .clone();
         let focused = focus.is_focused(window);
         let on_click = self.on_click;
-        close_button_frame(base::Button::new(self.id), self.white, focused, cx)
-            .track_focus(&focus)
-            .disabled(self.disabled)
-            .when(self.disabled, |this| this.opacity(0.25))
-            .when_some(on_click, |this, on_click| {
-                this.on_click(move |event, window, cx| on_click(event, window, cx))
-            })
+        close_button_frame(
+            base::Button::new(self.id),
+            self.white,
+            focused && !self.disabled,
+            cx,
+        )
+        .track_focus(&focus)
+        .disabled(self.disabled)
+        .when(self.disabled, |this| this.opacity(0.25))
+        .when_some(on_click, |this, on_click| {
+            this.on_click(move |event, window, cx| on_click(event, window, cx))
+        })
     }
 }
 
@@ -92,6 +97,7 @@ pub(crate) fn close_button_frame(
     button
         .accessibility_label("Close")
         .size(px(24.))
+        .relative()
         .flex_shrink_0()
         .rounded(theme.radius.base)
         .text_color(color)
@@ -99,7 +105,7 @@ pub(crate) fn close_button_frame(
         .hover(|style| style.opacity(0.75))
         .when(focused, |this| {
             this.opacity(1.)
-                .shadow(vec![theme.focus_ring(theme.focus_ring_color())])
+                .child(theme.focus_ring_outline(theme.focus_ring_color(), theme.radius.base))
         })
         .child(Icon::new(IconName::Close).size(px(16.)))
 }

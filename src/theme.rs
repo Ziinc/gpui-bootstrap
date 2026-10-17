@@ -19,10 +19,11 @@
 //! ```
 
 use gpui_kit::{
-    App, BoxShadow, FontWeight, Global, Hsla, Pixels, Rgba, SharedString, point, px, rgb, rgba,
+    App, BoxShadow, Div, FontWeight, Global, Hsla, Pixels, Rgba, SharedString, Styled as _, div,
+    point, px, rgb, rgba,
 };
 
-use crate::platform::{Platform, apply_surfaces, palette};
+use crate::platform::{Platform, palette, surfaces_mut};
 
 /// Bootstrap's two color modes (`data-bs-theme`).
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -118,10 +119,12 @@ pub struct ThemeColors {
     pub border_color: Hsla,
     /// `--bs-border-color-translucent`, used by cards, modals and list groups.
     pub border_color_translucent: Hsla,
-    /// `--bs-link-color`.
-    pub link_color: Hsla,
-    /// `--bs-link-hover-color`.
-    pub link_hover_color: Hsla,
+    /// `--bs-link-color`. `None` derives it from `primary`; read it with
+    /// [`Theme::link_color`].
+    pub link_color: Option<Hsla>,
+    /// `--bs-link-hover-color`. `None` derives it from the link color; read it
+    /// with [`Theme::link_hover_color`].
+    pub link_hover_color: Option<Hsla>,
     /// `$modal-backdrop-bg` at `$modal-backdrop-opacity`.
     pub backdrop: Hsla,
 }
@@ -297,14 +300,22 @@ impl Theme {
         Self::platform(Platform::Web, ColorMode::Dark)
     }
 
-    /// Switches to `mode` using this theme's platform palette: surfaces
-    /// (body, borders, links, backdrop) are replaced, and each theme color
-    /// moves to the platform's color for `mode` unless you changed it, in
-    /// which case your value is kept. Radii, type and sizing are untouched.
+    /// Switches to `mode` using this theme's platform palette. Each theme and
+    /// surface color moves to the platform's color for `mode` unless you
+    /// changed it, in which case your value is kept. Radii, type and sizing
+    /// are untouched.
+    ///
+    /// An override is recognized by differing from the current mode's palette,
+    /// so one that equals the platform's own value is treated as unchanged.
     pub fn with_mode(mut self, mode: ColorMode) -> Self {
+        if mode == self.mode {
+            return self;
+        }
         let from = palette(self.platform, self.mode);
         let to = palette(self.platform, mode);
         let colors = &mut self.colors;
+        // Each color moves to the new mode's palette value unless the app
+        // overrode it.
         for (field, (old, new)) in [
             &mut colors.primary,
             &mut colors.secondary,
@@ -322,7 +333,14 @@ impl Theme {
                 *field = new;
             }
         }
-        apply_surfaces(colors, &to, self.platform, mode);
+        for (field, (old, new)) in surfaces_mut(colors)
+            .into_iter()
+            .zip(from.surfaces().into_iter().zip(to.surfaces()))
+        {
+            if *field == old {
+                *field = new;
+            }
+        }
         self.mode = mode;
         self
     }
@@ -361,7 +379,7 @@ impl Theme {
             kit.ring = colors.primary;
             kit.caret = colors.body_color;
             kit.selection = colors.primary.opacity(0.25);
-            kit.link = colors.link_color;
+            kit.link = self.link_color();
             kit.danger = colors.danger;
             kit.success = colors.success;
             kit.warning = colors.warning;
@@ -503,10 +521,18 @@ impl Theme {
     pub fn outline_button(&self, variant: Variant) -> ButtonColors {
         let base = self.colors.variant(variant);
         let contrast = self.contrast(base);
+        // Bootstrap draws the label in the base color even where it fails
+        // WCAG's 3:1 for large text (warning and light on a light body); fall
+        // back to the variant's emphasis text there.
+        let color = if contrast_ratio(base, self.colors.body_bg) >= 3. {
+            base
+        } else {
+            self.variant(variant).text_emphasis
+        };
         ButtonColors {
             bg: gpui_kit::transparent_black(),
             border: base,
-            color: base,
+            color,
             hover_bg: base,
             hover_border: base,
             hover_color: contrast,
@@ -526,6 +552,27 @@ impl Theme {
             spread_radius: self.focus_ring_width,
             inset: false,
         }
+    }
+
+    /// The focus ring as an outline: a child for a `relative()` control with
+    /// corner radius `radius`. Unlike [`Theme::focus_ring`], which GPUI paints
+    /// as a filled rectangle behind the control, it leaves a transparent
+    /// control's background alone.
+    pub fn focus_ring_outline(&self, color: Hsla, radius: Pixels) -> Div {
+        let width = self.focus_ring_width;
+        div()
+            .absolute()
+            .top(-width)
+            .left(-width)
+            .right(-width)
+            .bottom(-width)
+            .border(width)
+            .border_color(color)
+            .rounded(if radius > px(0.) {
+                radius + width
+            } else {
+                px(0.)
+            })
     }
 
     /// The default focus ring color, `$focus-ring-color`.
@@ -691,6 +738,41 @@ mod tests {
         theme.colors.primary = hex(0x6f42c1);
         assert!(close(theme.button(Variant::Primary).hover_bg, 0x5e38a4));
         assert!(close(theme.variant(Variant::Primary).bg_subtle, 0xe2d9f3));
+    }
+
+    #[test]
+    fn links_follow_primary() {
+        let mut theme = Theme::light();
+        theme.colors.primary = hex(0x6f42c1);
+        assert_eq!(theme.link_color(), hex(0x6f42c1));
+        assert_eq!(theme.link_hover_color(), shade(hex(0x6f42c1), 0.2));
+        theme.colors.link_color = Some(hex(0xd63384));
+        assert_eq!(theme.link_color(), hex(0xd63384));
+    }
+
+    #[test]
+    fn with_mode_keeps_surface_overrides() {
+        let mut theme = Theme::light();
+        theme.colors.body_bg = hex(0xfafafa);
+        assert_eq!(theme.clone().with_mode(ColorMode::Light), theme);
+        let dark = theme.clone().with_mode(ColorMode::Dark);
+        assert_eq!(dark.colors.body_bg, hex(0xfafafa));
+        assert_eq!(dark.colors.border_color, hex(0x495057));
+        assert_eq!(dark.with_mode(ColorMode::Light), theme);
+    }
+
+    #[test]
+    fn outline_text_stays_readable() {
+        for platform in Platform::ALL {
+            for mode in [ColorMode::Light, ColorMode::Dark] {
+                let theme = Theme::platform(platform, mode);
+                for variant in Variant::ALL {
+                    let color = theme.outline_button(variant).color;
+                    let ratio = contrast_ratio(color, theme.colors.body_bg);
+                    assert!(ratio >= 3., "{platform:?} {mode:?} {variant:?}: {ratio}");
+                }
+            }
+        }
     }
 
     #[test]
