@@ -2948,20 +2948,20 @@
           "key": "",
           "is_default": true,
           "file": "snapshots/typography/scale/bootstrap-light/default.png",
-          "width": 408,
-          "height": 332,
+          "width": 492,
+          "height": 392,
           "scale": 2.0,
-          "hash": "cc8e075ab55ee294"
+          "hash": "b419a979028b4bd4"
         },
         {
           "theme": "bootstrap-dark",
           "key": "",
           "is_default": true,
           "file": "snapshots/typography/scale/bootstrap-dark/default.png",
-          "width": 408,
-          "height": 332,
+          "width": 492,
+          "height": 392,
           "scale": 2.0,
-          "hash": "0cb8494efa41e557"
+          "hash": "957d195e70072717"
         }
       ]
     },

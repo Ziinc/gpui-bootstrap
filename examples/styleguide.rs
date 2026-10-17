@@ -471,7 +471,10 @@ fn surfaces() -> Vec<gpui_styleguidist::Example> {
                 .child(Muted::new("Secondary body text for captions and help."))
         })
         .component("Typography")
-        .title("Type scale"),
+        .title("Type scale")
+        // A fixed canvas: the widest heading's measured width varies by a
+        // pixel between font setups, which would resize the snapshot.
+        .size(460., 360.),
     ]
 }
 
