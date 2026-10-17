@@ -81,6 +81,10 @@ impl RenderOnce for FormText {
 ///
 /// Create the state once and keep it in your view:
 /// `cx.new(|cx| InputState::new(window, cx).placeholder("name@example.com"))`.
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("form-control/basic")
+)]
 #[derive(IntoElement)]
 pub struct FormControl {
     state: Entity<InputState>,
@@ -263,6 +267,10 @@ fn use_focus(id: &ElementId, window: &mut Window, cx: &mut App) -> gpui_kit::Foc
 
 /// A checkbox, `.form-check-input[type=checkbox]`, over
 /// [`gpui_kit::base::Checkbox`].
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("checks/playground")
+)]
 #[derive(IntoElement)]
 pub struct Checkbox {
     id: ElementId,

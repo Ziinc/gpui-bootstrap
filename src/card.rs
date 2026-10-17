@@ -14,6 +14,7 @@ use crate::{ActiveTheme as _, Variant};
 /// A bordered content container with an optional header and footer.
 ///
 /// Children go in `.card-body`, after the title and subtitle.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("card/basic"))]
 #[derive(IntoElement)]
 pub struct Card {
     header: Option<AnyElement>,

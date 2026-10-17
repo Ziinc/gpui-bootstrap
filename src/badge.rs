@@ -8,6 +8,7 @@ use gpui_kit::{
 use crate::{ActiveTheme as _, Variant};
 
 /// A small count or label, `badge text-bg-<variant>`.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("badge/playground"))]
 #[derive(IntoElement)]
 pub struct Badge {
     label: SharedString,

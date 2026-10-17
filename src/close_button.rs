@@ -15,6 +15,10 @@ use crate::ActiveTheme as _;
 type ClickHandler = Rc<dyn Fn(&ClickEvent, &mut Window, &mut App)>;
 
 /// A dismiss button: an `×` at half opacity, darker on hover.
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("close-button/basic")
+)]
 #[derive(IntoElement)]
 pub struct CloseButton {
     id: ElementId,

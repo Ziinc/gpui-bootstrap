@@ -21,6 +21,7 @@ struct Crumb {
 }
 
 /// A navigation trail. The last item is the current page.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("breadcrumb/basic"))]
 #[derive(IntoElement)]
 pub struct Breadcrumb {
     id: ElementId,

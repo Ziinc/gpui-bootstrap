@@ -2181,6 +2181,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "gpui-kit",
+ "gpui-styleguidist",
  "image",
 ]
 
@@ -3067,6 +3068,46 @@ name = "gpui-pre-ztracing-macro"
 version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4b0d73e1bc02eef886a5947f41b8512708792e9e5d3053d181843311a487f96f"
+
+[[package]]
+name = "gpui-styleguidist"
+version = "0.1.0"
+source = "git+https://github.com/Ziinc/gpui-styleguidist?rev=7af7f20d75ae7e2cf576873d42fbcc505c10eabe#7af7f20d75ae7e2cf576873d42fbcc505c10eabe"
+dependencies = [
+ "anyhow",
+ "gpui-pre",
+ "gpui-pre-platform",
+ "gpui-pre-web",
+ "gpui-styleguidist-macros",
+ "gpui-styleguidist-manifest",
+ "image",
+ "serde",
+ "serde_json",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "gpui-styleguidist-macros"
+version = "0.1.0"
+source = "git+https://github.com/Ziinc/gpui-styleguidist?rev=7af7f20d75ae7e2cf576873d42fbcc505c10eabe#7af7f20d75ae7e2cf576873d42fbcc505c10eabe"
+dependencies = [
+ "base64 0.22.1",
+ "gpui-styleguidist-manifest",
+ "proc-macro2",
+ "quote",
+ "serde_json",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "gpui-styleguidist-manifest"
+version = "0.1.0"
+source = "git+https://github.com/Ziinc/gpui-styleguidist?rev=7af7f20d75ae7e2cf576873d42fbcc505c10eabe#7af7f20d75ae7e2cf576873d42fbcc505c10eabe"
+dependencies = [
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "granit-parser"

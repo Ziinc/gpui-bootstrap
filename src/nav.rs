@@ -32,6 +32,7 @@ pub enum NavStyle {
 ///
 /// Tab semantics come from [`gpui_kit::base::Tabs`]; the application owns
 /// which item is active and what each one shows.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("nav/playground"))]
 #[derive(IntoElement)]
 pub struct Nav {
     id: ElementId,

@@ -158,6 +158,31 @@ Read the active theme in your own components with `cx.theme()` (trait
 `gpui_bootstrap::ActiveTheme`), and use `theme.variant(v)` /
 `theme.button(v)` for the derived colors.
 
+## Documentation
+
+The [styleguide](https://ziinc.github.io/gpui-bootstrap/) runs every component
+in the browser, with knobs for its builders, a theme picker for each platform
+in light and dark, and copyable code. The
+[API docs](https://ziinc.github.io/gpui-bootstrap/api/gpui_bootstrap/) embed
+rendered previews of the same examples. Both are built with
+[gpui-styleguidist](https://github.com/Ziinc/gpui-styleguidist) and published
+to GitHub Pages from `main`.
+
+```sh
+cargo run --example styleguide            # the styleguide in a native window
+cargo run --example styleguide -- render  # re-render styleguide/ after a visual change
+cargo run --example styleguide -- check   # what CI runs: fails on pixel changes
+cargo doc --open --features styleguide    # API docs with previews
+
+# The web build (needs nightly with wasm32-unknown-unknown and the
+# wasm-bindgen-cli version in Cargo.lock):
+cargo install cargo-styleguide --git https://github.com/Ziinc/gpui-styleguidist
+cargo styleguide serve
+```
+
+Examples live in [`examples/styleguide.rs`](examples/styleguide.rs). Snapshots
+cover stock Bootstrap light and dark; the live styleguide offers every theme.
+
 ## Gallery
 
 ```sh

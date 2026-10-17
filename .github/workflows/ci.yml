@@ -25,9 +25,24 @@ jobs:
       - run: cargo fmt --all --check
       - run: cargo clippy --all-targets -- --deny warnings
       - run: cargo test
+      # Spinners animate from when they first paint, so their snapshots vary
+      # by a frame; they get a looser tolerance than everything else.
+      - name: Styleguide snapshots match
+        run: |
+          cargo build --example styleguide
+          styleguide=target/debug/examples/styleguide
+          for component in $($styleguide list | cut -d/ -f1 | sort -u | grep -vx spinner); do
+            $styleguide check --filter "$component/"
+          done
+          $styleguide check --filter spinner/ --tolerance 0.05
       - name: Gallery renders
         run: cargo run --example gallery -- --screenshot gallery.png
       - uses: actions/upload-artifact@v4
         with:
           name: gallery
           path: gallery.png
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: snapshot-mismatches
+          path: target/styleguide-check

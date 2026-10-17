@@ -39,6 +39,10 @@ enum GroupPosition {
 ///
 /// Focus, Space/Enter activation and accessibility come from
 /// [`gpui_kit::base::Button`].
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("button/playground")
+)]
 #[derive(IntoElement)]
 pub struct Button {
     id: ElementId,
@@ -253,6 +257,10 @@ impl RenderOnce for Button {
 }
 
 /// `.btn-group`: buttons joined into one control.
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("button-group/basic")
+)]
 #[derive(IntoElement)]
 pub struct ButtonGroup {
     id: ElementId,

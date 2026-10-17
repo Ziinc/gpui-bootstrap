@@ -16,6 +16,7 @@ use crate::{ActiveTheme as _, Variant, close_button::CloseButton};
 type DismissHandler = Rc<dyn Fn(&ClickEvent, &mut Window, &mut App)>;
 
 /// A contextual message, `alert alert-<variant>`.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("alert/playground"))]
 #[derive(IntoElement)]
 pub struct Alert {
     id: ElementId,

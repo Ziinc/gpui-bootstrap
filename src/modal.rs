@@ -37,6 +37,7 @@ pub enum ModalSize {
 /// Focus trapping, Escape, the backdrop press and close callbacks come from
 /// [`gpui_kit::base::Dialog`]. Keep a [`DialogHandle`] in your view, render
 /// the modal every frame, and call `handle.open(window, cx)` to show it.
+#[cfg_attr(feature = "styleguide", gpui_styleguidist::preview("modal/basic"))]
 #[derive(IntoElement)]
 pub struct Modal {
     handle: DialogHandle,

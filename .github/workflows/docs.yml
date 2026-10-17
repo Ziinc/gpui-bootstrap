@@ -1,0 +1,69 @@
+name: Docs
+
+# Publishes the wasm styleguide at the site root and the API docs, with their
+# rendered previews, under /api/. Needs Pages enabled with source "GitHub Actions".
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # The commit of gpui-styleguidist that Cargo.toml pins.
+  STYLEGUIDIST_REV: 7af7f20d75ae7e2cf576873d42fbcc505c10eabe
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      # Native builds (cargo-styleguide, rustdoc) link GPUI's Linux platform.
+      - name: Install GPUI dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev \
+            libx11-xcb-dev libxcb1-dev libfontconfig-dev
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install cargo-styleguide and wasm-bindgen-cli
+        run: |
+          cargo install cargo-styleguide --locked \
+            --git https://github.com/Ziinc/gpui-styleguidist --rev "$STYLEGUIDIST_REV"
+          version=$(cargo metadata --format-version 1 | jq -r '.packages[] | select(.name == "wasm-bindgen") | .version')
+          cargo install wasm-bindgen-cli --version "$version" --locked
+      - name: Build the web styleguide
+        run: cargo styleguide build --profile styleguide --title gpui-bootstrap --out site
+      - name: Build the API docs
+        run: |
+          cargo doc --no-deps --features styleguide
+          cp -r target/doc site/api
+          echo '<meta http-equiv="refresh" content="0; url=gpui_bootstrap/">' > site/api/index.html
+        env:
+          RUSTDOCFLAGS: --html-in-header ${{ github.workspace }}/styleguide/header.html -D warnings
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

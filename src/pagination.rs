@@ -19,6 +19,10 @@ type ChangeHandler = Rc<dyn Fn(usize, &mut Window, &mut App)>;
 ///
 /// Which pages show and where ellipses go comes from
 /// [`gpui_kit::base::PaginationState`]. Pages are 1-based.
+#[cfg_attr(
+    feature = "styleguide",
+    gpui_styleguidist::preview("pagination/playground")
+)]
 #[derive(IntoElement)]
 pub struct Pagination {
     id: ElementId,
