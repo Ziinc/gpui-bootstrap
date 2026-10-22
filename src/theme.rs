@@ -496,6 +496,9 @@ impl Theme {
             active_border,
             active_color: self.contrast(active_bg),
             focus_ring: mix(color, base, 0.15).opacity(0.5),
+            disabled_bg: base,
+            disabled_border: base,
+            disabled_color: color,
         }
     }
 
@@ -514,6 +517,9 @@ impl Theme {
             active_border: base,
             active_color: contrast,
             focus_ring: base.opacity(0.5),
+            disabled_bg: gpui_kit::transparent_black(),
+            disabled_border: base,
+            disabled_color: base,
         }
     }
 
@@ -590,6 +596,12 @@ pub struct ButtonColors {
     pub active_border: Hsla,
     pub active_color: Hsla,
     pub focus_ring: Hsla,
+    /// `$disabled-background`, drawn at the theme's `disabled_opacity`.
+    pub disabled_bg: Hsla,
+    /// `$disabled-border`.
+    pub disabled_border: Hsla,
+    /// `$disabled-color`.
+    pub disabled_color: Hsla,
 }
 
 /// Sass's `mix($a, $b, $weight)`: `weight` of `a`, the rest of `b`, in sRGB.
