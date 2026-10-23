@@ -3,8 +3,9 @@
 use std::rc::Rc;
 
 use gpui_kit::{
-    AnyElement, App, ClickEvent, ElementId, InteractiveElement as _, IntoElement, ParentElement,
-    RenderOnce, SharedString, StatefulInteractiveElement as _, StyleRefinement, Styled, Window,
+    AnyElement, App, ClickEvent, ElementId, InteractiveElement, Interactivity, IntoElement,
+    ParentElement, RenderOnce, SharedString, StatefulInteractiveElement, StyleRefinement, Styled,
+    Window,
     base::{self, StyledExt as _},
     div,
     prelude::FluentBuilder as _,
@@ -46,6 +47,9 @@ enum GroupPosition {
 #[derive(IntoElement)]
 pub struct Button {
     id: ElementId,
+    /// The unstyled control, built up front so [`InteractiveElement`]
+    /// handlers (a right-click menu, a debug selector) reach it.
+    base: base::Button,
     label: Option<SharedString>,
     children: Vec<AnyElement>,
     variant: Variant,
@@ -56,13 +60,16 @@ pub struct Button {
     on_click: Option<ClickHandler>,
     accessibility_label: Option<SharedString>,
     group_position: Option<GroupPosition>,
+    colors: Option<ButtonColors>,
     style: StyleRefinement,
 }
 
 impl Button {
     pub fn new(id: impl Into<ElementId>) -> Self {
+        let id = id.into();
         Self {
-            id: id.into(),
+            base: base::Button::new(id.clone()),
+            id,
             label: None,
             children: Vec::new(),
             variant: Variant::Primary,
@@ -73,6 +80,7 @@ impl Button {
             on_click: None,
             accessibility_label: None,
             group_position: None,
+            colors: None,
             style: StyleRefinement::default(),
         }
     }
@@ -89,6 +97,16 @@ impl Button {
 
     pub fn button_style(mut self, style: ButtonStyle) -> Self {
         self.button_style = style;
+        self
+    }
+
+    /// Paints the button with `colors` in place of its variant and style's,
+    /// as Bootstrap's `button-variant()` mixin makes a custom `.btn-*`
+    /// class. Build them with [`Theme::button`](crate::Theme::button) or
+    /// [`Theme::outline_button`](crate::Theme::outline_button) and change
+    /// what differs.
+    pub fn colors(mut self, colors: ButtonColors) -> Self {
+        self.colors = Some(colors);
         self
     }
 
@@ -128,6 +146,14 @@ impl Button {
         self
     }
 
+    /// Whether pressing the button moves focus onto it (the default). A
+    /// toolbar button that should leave focus in the editor it acts on can
+    /// opt out; it then takes no keyboard focus at all.
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.base = self.base.focusable(focusable);
+        self
+    }
+
     pub fn accessibility_label(mut self, label: impl Into<SharedString>) -> Self {
         self.accessibility_label = Some(label.into());
         self
@@ -159,6 +185,14 @@ impl ParentElement for Button {
     }
 }
 
+impl InteractiveElement for Button {
+    fn interactivity(&mut self) -> &mut Interactivity {
+        self.base.interactivity()
+    }
+}
+
+impl StatefulInteractiveElement for Button {}
+
 fn link_colors(theme: &Theme) -> ButtonColors {
     let transparent = gpui_kit::transparent_black();
     ButtonColors {
@@ -172,6 +206,9 @@ fn link_colors(theme: &Theme) -> ButtonColors {
         active_border: transparent,
         active_color: theme.colors.link_hover_color,
         focus_ring: theme.focus_ring_color(),
+        disabled_bg: transparent,
+        disabled_border: transparent,
+        disabled_color: theme.colors.link_color,
     }
 }
 
@@ -183,11 +220,11 @@ impl RenderOnce for Button {
             .clone();
         let focused = focus.is_focused(window);
         let theme = cx.theme();
-        let colors = match self.button_style {
+        let colors = self.colors.unwrap_or_else(|| match self.button_style {
             ButtonStyle::Solid => theme.button(self.variant),
             ButtonStyle::Outline => theme.outline_button(self.variant),
             ButtonStyle::Link => link_colors(theme),
-        };
+        });
         let is_link = self.button_style == ButtonStyle::Link;
         let control = theme.controls.get(self.size);
         let radius = theme
@@ -196,7 +233,7 @@ impl RenderOnce for Button {
             .unwrap_or(theme.radius.for_size(self.size));
         let interactive = !self.disabled && !self.active;
 
-        base::Button::new(self.id)
+        self.base
             .track_focus(&focus)
             .disabled(self.disabled)
             .selected(self.active)
@@ -243,7 +280,12 @@ impl RenderOnce for Button {
                     .border_color(colors.active_border)
                     .text_color(colors.active_color)
             })
-            .when(self.disabled, |this| this.opacity(theme.disabled_opacity))
+            .when(self.disabled, |this| {
+                this.bg(colors.disabled_bg)
+                    .border_color(colors.disabled_border)
+                    .text_color(colors.disabled_color)
+                    .opacity(theme.disabled_opacity)
+            })
             .when(focused, |this| {
                 this.shadow(vec![theme.focus_ring(colors.focus_ring)])
             })
@@ -346,5 +388,16 @@ mod tests {
         assert_eq!(button.button_style, ButtonStyle::Outline);
         assert_eq!(button.size, Size::Small);
         assert!(button.disabled && button.active);
+    }
+
+    #[test]
+    fn custom_colors_replace_the_variants() {
+        let theme = Theme::light();
+        let colors = ButtonColors {
+            hover_bg: theme.colors.tertiary_bg,
+            ..theme.outline_button(Variant::Secondary)
+        };
+        let button = Button::new("ghost").colors(colors);
+        assert_eq!(button.colors, Some(colors));
     }
 }
